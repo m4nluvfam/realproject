@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMITL News</title>
+    <link rel="stylesheet" href="stylesV2.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+    <div class="bg">
+        <!-- ส่วนหัว -->
+        <div class="title">
+            <h1>KMITL News</h1>
+            <p>ข่าวประชาสัมพันธ์</p>
+        </div>
+        
+        <!-- เมนูหมวดหมู่ -->
+        <ul class="nav nav-tabs nav-tabs-responsive">
+            <!-- หมวดหมู่ที่ 1 -->
+            <li role="presentation" class="category active" id="category1">
+                <a href="#tab1" role="tab" data-toggle="tab" aria-controls="tab1" aria-expanded="true">
+                    <span class="text">KMITL News</span>
+                </a>
+            </li>
+            <!-- หมวดหมู่ที่ 2 -->
+            <li role="presentation" class="category" id="category2">
+                <a href="#tab2" role="tab" data-toggle="tab" aria-controls="tab2" aria-expanded="false">
+                    <span class="text">Facebook</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- ข่าวประชาสัมพันธ์ -->
+        <div id="news-container" class="news-carousel">
+            <!-- ข่าวจะถูกโหลดแบบไดนามิก -->
+        </div>
+    </div>
+
+    <!-- jQuery และ Bootstrap JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        // ดึงข้อมูลจาก fetch_news.php และแสดงผลใน HTML
+        fetch('fetch_news.php')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('news-container');
+                container.innerHTML = ''; // ล้างข้อมูลเก่า
+                data.forEach(news => {
+                    // ตรวจสอบว่ามีรูปภาพหรือไม่
+                    const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
+
+                    const newsItem = document.createElement('div');
+                    newsItem.className = 'news-item';
+                    newsItem.innerHTML = `
+                        <a href="${news.link_url}" target="_blank">
+                            <img src="${picture}" alt="${news.ns_head}">
+                            <h3>${news.ns_head}</h3>
+                        </a>
+                        <p class="news-date">
+                            <i class="fas fa-clock"></i> ${new Date(news.ns_date).toLocaleDateString()}
+                            <button class="btn btn-primary btn-sm" onclick="alert('หมวดหมู่: ${news.nsg_name}')">${news.nsg_name}</button>
+                        </p>
+                    `;
+                    container.appendChild(newsItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching news:', error);
+                document.getElementById('news-container').innerHTML = '<p>ไม่สามารถโหลดข่าวได้</p>';
+            });
+    </script>
+</body>
+</html>

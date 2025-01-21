@@ -1,0 +1,235 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body .bg {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    min-height: 100vh; /* ตั้งความสูงขั้นต่ำเป็น 100% ของหน้าจอ */
+    display: flex;
+    flex-direction: column;
+    background-color: #fff3e0;
+}
+    
+/* ส่วนหัว */
+.title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* KMITL News */
+.title h1 {
+    font-family: "Kanit", sans-serif;
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 650;
+    color: #e65100; /* สีเข้มขึ้นเพื่อเพิ่มความโดดเด่น */
+    margin-top: 30px;
+}
+
+/* ข่าวประชาสัมพันธ์ */
+.title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 27px;
+    color: #ff7043;
+}
+
+/* ปุ่มเลือกหมวดหมู่ */
+.nav-tabs {
+    font-family: "Kanit", sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #424242; /* พื้นหลังปุ่มกดเลือกหมวดหมู่ */
+    border-radius: 15px;  /* ความโค้งของขอบ */
+    width: 150;  /* ความยาวพื้นหลังสีดำ */
+    margin-left: auto;  /* ให้พื้นหลังสีดำอยู่ตรงกลาง */
+    margin-right: auto;
+} 
+
+/* แท็บที่ไม่ได้เลือก */
+.nav-tabs .category a {
+    padding: 10px 20px;  /* ขนาดปุ่ม */
+    color: #fff;   /* สีตัวอักษร */
+    border-radius: 15px;
+    margin: 0; /* margin 0 ทำให้ปุ่มติดกัน */
+    width: 300px; /* กำหนดความกว้าง */
+    height: 60px; /* กำหนดความสูง */
+    display: flex; /* ใช้ flexbox เพื่อจัดวาง */
+    justify-content: center; /* จัดกึ่งกลางแนวนอน */
+    align-items: center; /* จัดตัวอักษรให้อยู่กึ่งกลางแนวตั้ง */
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+}
+
+/* แท็บที่เลือก */
+.nav-tabs .category.active a {
+    background-color: #ff9800;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้กับหมวดที่ถูกเลือก */
+}
+    
+/* ปุ่มที่ไม่ได้เลือก เมื่อเอาเมาส์ไปวาง hover */
+.nav-tabs .category a:hover {
+    background-color: #ff9800;
+}
+    
+/* ข่าวจะถูกจัดเรียงให้มีระยะห่างระหว่างกันเท่าๆ กัน */
+.news-carousel {
+    display: flex;  /* ใช้ flexbox เพื่อจัดเรียงกล่อง */
+    justify-content: center;  /* จัดเรียงกล่องในแนวตั้ง */
+    gap: 20px;  /* ระยะห่างระหว่างกล่อง */
+    padding: 20px;  /* ระยะห่างภายใน */
+}
+
+/*ระยะห่างระหว่างหมวดหมู่กับส่วนของข่าว*/
+.tab-content {
+    margin-top: 15px;
+}
+
+/* ส่วนของข่าว */
+.news-item {
+    text-align: center; /* จัดข้อความทั้งหมดให้อยู่ตรงกลาง */
+    background-color: #fff; /* สีพื้นหลังของกล่องข่าว */
+    border: 1px solid #ccc; /* เส้นขอบ */
+    border-radius: 10px; /* มุมโค้ง */
+    padding: 0.1%; /* ระยะห่างภายใน */
+    width: 345px; /*กว้าง*/
+    height: 420px; /* สูง */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เงาของกล่อง */
+    position: relative; /* ทำให้สามารถวางตำแหน่งลูกที่เป็น absolute ได้ภายในกล่องนี้ */
+}
+
+/* วันที่ของข่าว */
+.news-date {
+    font-size: 14px; /* ปรับขนาดตัวอักษร */
+    color: #888888; /* สีเทาอ่อน */
+    /* margin-bottom: 10px;  เพิ่มระยะห่างจากวันที่ถึงเนื้อหาข่าว */
+    position: absolute; /*ตำแหน่งของวันที่ไปที่มุมล่างซ้ายของกล่อง*/
+    bottom: 10px; /* ระยะห่างจากด้านล่าง */
+    margin-left: 15px;
+}
+
+/* เพิ่มระยะห่างระหว่างไอคอนและวันที่ */
+.news-date i {
+    margin-right: 5px; 
+}
+
+/* ส่วนของข่าวเวลาเอาเมาส์มาวางค้างไว้ */
+.news-item:hover {
+    transform: scale(1.05); /* ขยายขนาดเล็กๆ เมื่อ hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* เพิ่มเงา */
+}
+
+/*ส่วนรูปของข่าว*/
+.news-item img {
+    width: 100%; /* ปรับขนาดให้เต็มความกว้างของกล่อง */
+    max-width: 600px; /* ความกว้างสูงสุดของรูปภาพ */
+    height: 250px; /* ความสูง */
+    display: block; /* ทำให้รูปภาพอยู่ในบรรทัดใหม่แยกจากเนื้อหา */
+    border-radius: 10px; /* มุมโค้งของรูปภาพ*/
+    margin: 0 auto; /* จัดรูปภาพให้อยู่ตรงกลาง */
+    object-fit: cover; /* ให้รูปภาพครอบคลุมขนาดที่กำหนด */
+}
+
+/*ส่วนเนื้อหาของข่าว*/
+.news-item h3 {
+    font-family: "Kanit", sans-serif;
+    font-weight: 200;  /* ความเข้มฟ้อน */
+    font-size: 18px; /* ขนาดฟ้อน */
+    margin-top: 25px; /* สร้างระยะห่างระหว่างเนื้อหาข่าวกับรูป */
+    line-height: 1.5; /* ปรับระยะห่างระหว่างบรรทัดของข้อความ */
+    color: #333;
+}
+    
+/* ปุ่มอ่านเพิ่มเติม */
+.wg-tab-link {
+    font-family: "Kanit", sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/*ปุ่มกดอ่านเพิ่มเติม*/
+.wg-tab-link .btn-primary {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*ปุ่มกดอ่านเพิ่มเติม เมื่อนำเมาส์ไปวาง*/
+.wg-tab-link .btn-primary:hover {
+    background-color: #f57c00;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    /* เมื่อหน้าจอมีขนาดเล็ก (เช่น มือถือ หรือแท็บเล็ต) */
+    .nav-tabs {
+        width: 100%;  /* ปรับให้ปุ่มเลือกหมวดหมู่เต็มหน้าจอ */
+        flex-direction: column;  /* เปลี่ยนแถวแนวนอนให้เป็นแนวตั้ง */
+    }
+
+    .nav-tabs .category a {
+        width: 100%;  /* ปรับความกว้างของแต่ละแท็บให้เต็มหน้าจอ */
+        padding: 15px 0;  /* ปรับขนาดของปุ่มให้ใหญ่ขึ้น */
+    }
+
+    .nav-tabs .category.active a {
+        background-color: #ff9800;
+    }
+
+    .news-carousel {
+        flex-direction: column; /* เปลี่ยนแถวเป็นแนวตั้ง */
+        align-items: center; /* จัดข่าวให้อยู่กลาง */
+    }
+
+    /* ปรับขนาดกล่องข่าว */
+    .news-item {
+        width: 100%;  /* ทำให้กล่องข่าวเต็มหน้าจอ */
+        height: auto; /* ให้ความสูงปรับอัตโนมัติ */
+    }
+
+    /* ปรับขนาดรูปภาพให้เหมาะสม */
+    .news-item img {
+        height: 200px; /* ปรับความสูงของรูปให้พอดีกับหน้าจอ */
+    }
+
+    .news-item h3 {
+        font-size: 16px; /* ปรับขนาดตัวอักษร */
+    }
+
+    .wg-tab-link .btn-primary {
+        padding: 8px 20px;  /* ปรับขนาดปุ่มให้เล็กลง */
+    }
+}
+
+@media (max-width: 480px) {
+    /* เมื่อหน้าจอเล็กลง เช่น บนมือถือ */
+    .nav-tabs .category a {
+        padding: 12px 0;  /* ปรับให้ปุ่มมีขนาดเล็กลง */
+        font-size: 14px;  /* ปรับขนาดตัวอักษรให้เหมาะสม */
+    }
+
+    .news-item {
+        width: 100%;  /* ให้กล่องข่าวเต็มหน้าจอ */
+        height: auto;
+    }
+
+    .news-item img {
+        height: 180px; /* ปรับความสูงของรูปภาพ */
+    }
+
+    .news-item h3 {
+        font-size: 14px; /* ปรับขนาดตัวอักษร */
+    }
+
+    .wg-tab-link .btn-primary {
+        padding: 6px 15px;  /* ปรับขนาดปุ่มให้เล็กที่สุด */
+    }
+}

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  php-apache-environment:
+    container_name: php-apache
+    build: 
+      context: ./php
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./php/src:/var/www/html/      # แมปโฟลเดอร์ src ทั้งหมด
+      - ./php/src/image:/var/www/html/image  # แมปโฟลเดอร์ image โดยตรง
+    ports:
+      - 8080:80
+
+  # ส่วน web ก่อนหน้านี้ไม่มี นี่เพิ่งเพิ่ม
+  web:
+    image: php:8.1-apache
+    container_name: php_server
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - "8082:80"
+
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: db_project
+      MYSQL_USER: MYSQL_USER
+      MYSQL_PASSWORD: MYSQL_PASSWORD
+    ports:
+      - "9906:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql  # เพิ่ม volume เพื่อเก็บข้อมูลถาวร
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306  # ระบุพอร์ตของ MySQL เพื่อความชัดเจน
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:  # ประกาศ volume สำหรับเก็บข้อมูล MySQL
