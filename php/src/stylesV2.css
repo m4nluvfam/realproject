@@ -45,7 +45,13 @@ body .bg {
     background-color: transparent;
     border: none;
     margin-bottom: 20px;
+    padding: 0 15px;
 } 
+
+.nav-tabs .category {
+    flex: 1;
+    text-align: center;
+}
 
 .nav-tabs .category a {
     padding: 10px 20px;
@@ -54,6 +60,7 @@ body .bg {
     text-align: center;
     background-color: #eeeeee;
     transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
 }
 
 .nav-tabs .category.active a {

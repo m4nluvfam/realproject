@@ -22,21 +22,40 @@
         <ul class="nav nav-tabs nav-tabs-responsive">
             <!-- หมวดหมู่ที่ 1 -->
             <li role="presentation" class="category active" id="category1">
-                <a href="#tab1" role="tab" data-toggle="tab" aria-controls="tab1" aria-expanded="true">
+                <a href="#tab1" role="tab" data-toggle="tab" aria-controls="tab1" aria-expanded="true" onclick="showTab('news')">
                     <span class="text">KMITL News</span>
                 </a>
             </li>
             <!-- หมวดหมู่ที่ 2 -->
             <li role="presentation" class="category" id="category2">
-                <a href="#tab2" role="tab" data-toggle="tab" aria-controls="tab2" aria-expanded="false">
+                <a href="#tab2" role="tab" data-toggle="tab" aria-controls="tab2" aria-expanded="false" onclick="showTab('facebook')">
                     <span class="text">Facebook</span>
                 </a>
             </li>
         </ul>
 
         <!-- ข่าวประชาสัมพันธ์ -->
-        <div id="news-container" class="news-carousel">
+        <div id="news-container" class="news-carousel tab-content">
             <!-- ข่าวจะถูกโหลดแบบไดนามิก -->
+        </div>
+
+        <!-- Facebook Page -->
+        <div id="facebook-container" class="tab-content" style="display: none;">
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0" nonce="abc123"></script>
+            <div class="fb-page" 
+                 data-href="https://www.facebook.com/KMITLPrinceofChumphon?locale=th_TH" 
+                 data-tabs="timeline" 
+                 data-width="1600" 
+                 data-height="960" 
+                 data-small-header="false" 
+                 data-adapt-container-width="true" 
+                 data-hide-cover="false" 
+                 data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/KMITLPrinceofChumphon?locale=th_TH" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/KMITLPrinceofChumphon?locale=th_TH">Facebook</a>
+                </blockquote>
+            </div>
         </div>
     </div>
 
@@ -73,6 +92,24 @@
                 console.error('Error fetching news:', error);
                 document.getElementById('news-container').innerHTML = '<p>ไม่สามารถโหลดข่าวได้</p>';
             });
+
+        // แสดง/ซ่อนเนื้อหา
+        function showTab(tab) {
+            const newsContainer = document.getElementById('news-container');
+            const facebookContainer = document.getElementById('facebook-container');
+
+            if (tab === 'news') {
+                newsContainer.style.display = 'block';
+                facebookContainer.style.display = 'none';
+                document.getElementById('category1').classList.add('active');
+                document.getElementById('category2').classList.remove('active');
+            } else if (tab === 'facebook') {
+                newsContainer.style.display = 'none';
+                facebookContainer.style.display = 'block';
+                document.getElementById('category1').classList.remove('active');
+                document.getElementById('category2').classList.add('active');
+            }
+        }
     </script>
 </body>
 </html>
