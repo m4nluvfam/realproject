@@ -11,12 +11,15 @@ $conn = new mysqli($host, $user, $pass, $db);
 
 // ตรวจสอบการเชื่อมต่อ
 if ($conn->connect_error) {
-    http_response_code(500); // ส่งรหัสสถานะ HTTP 500 (Internal Server Error)
+    http_response_code(500);
     echo json_encode(['error' => 'Database connection failed: ' . $conn->connect_error]);
     exit;
 }
 
-// ดึงข้อมูลจากตาราง tb_news และ tb_news_group
+// รับค่าหมวดหมู่จาก query string
+$category = isset($_GET['category']) ? $_GET['category'] : 'news';
+
+// กำหนด SQL ตามหมวดหมู่ที่เลือก
 $sql = "SELECT 
             tb_news.ns_id, 
             tb_news.ns_head, 
@@ -31,15 +34,21 @@ $sql = "SELECT
         LEFT JOIN 
             tb_news_group
         ON 
-            tb_news.ns_gns_id = tb_news_group.nsg_id
-        ORDER BY 
-            tb_news.ns_date DESC";
+            tb_news.ns_gns_id = tb_news_group.nsg_id";
+
+if ($category === 'news') {
+    $sql .= " WHERE tb_news.ns_gns_id != 'facebook'"; // ดึงเฉพาะข่าวที่ไม่ใช่ Facebook
+} elseif ($category === 'facebook') {
+    $sql .= " WHERE tb_news.ns_gns_id = 'facebook'"; // ดึงเฉพาะข่าวจาก Facebook
+}
+
+$sql .= " ORDER BY tb_news.ns_date DESC";
 
 $result = $conn->query($sql);
 
 // ตรวจสอบผลลัพธ์ของคำสั่ง SQL
 if (!$result) {
-    http_response_code(500); // ส่งรหัสสถานะ HTTP 500 (Internal Server Error)
+    http_response_code(500);
     echo json_encode(['error' => 'Query failed: ' . $conn->error]);
     exit;
 }
@@ -51,14 +60,14 @@ if ($result->num_rows > 0) {
         $news[] = $row;
     }
 } else {
-    // กรณีไม่มีข้อมูลในฐานข้อมูล
+    http_response_code(200);
     echo json_encode(['message' => 'No news found']);
     $conn->close();
     exit;
 }
 
 // ส่งข้อมูลข่าวในรูปแบบ JSON
-http_response_code(200); // ส่งรหัสสถานะ HTTP 200 (OK)
+http_response_code(200);
 echo json_encode($news, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
 // ปิดการเชื่อมต่อฐานข้อมูล
