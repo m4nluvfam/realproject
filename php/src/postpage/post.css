@@ -1,0 +1,193 @@
+
+้html {
+    font-size: 16px;
+    font-family: "Kanit", sans-serif;
+}
+
+/* Body and global settings */
+body {
+    font-family: "Kanit", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff3e0;
+}
+
+/* Container */
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 900px; /* จำกัดความกว้างสูงสุด */
+}
+
+.costom-container {
+    
+    height: auto; /* ปรับความสูงตามเนื้อหา */
+    height: auto; /* ปรับความสูงตามเนื้อหา */
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.custom-container:hover {
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.text-center {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #f57c00;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Inputs and Textarea */
+input[type="text"],
+textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #f57c00;
+    outline: none;
+}
+
+.custom-textarea {
+    width: 100%; /* ใช้ความกว้างเต็มพื้นที่ */
+    height: 200px; /* กำหนดความสูงเริ่มต้น */
+    resize: vertical; /* อนุญาตให้ปรับขนาดในแนวตั้ง */
+    padding: 10px; /* เพิ่มระยะห่างด้านใน */
+    font-size: 1rem; /* กำหนดขนาดตัวอักษร */
+    border: 1px solid #ccc; /* เพิ่มขอบ */
+    border-radius: 5px; /* ทำขอบมน */
+}
+
+.custom-textarea:focus {
+    border-color: #f57c00;
+    outline: none;
+}
+
+/* File input */
+.form-label {
+    font-size: 1rem;
+    color: #333; /* สีข้อความ */
+    font-weight: 500;
+    margin-bottom: 10px; /* ระยะห่างด้านล่าง */
+    display: block; /* บังคับให้อยู่คนละบรรทัดกับ input */
+}
+
+/* ปรับให้ label และ select อยู่ในบรรทัดเดียวกัน */
+.form-group {
+    display: flex;
+    align-items: center; /* จัดกึ่งกลางแนวตั้ง */
+    gap: 10px; /* ระยะห่างระหว่าง label และ select */
+}
+
+/* ปรับแต่ง dropdown */
+.form-select {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1rem; /* ขนาดฟอนต์ */
+    flex: 1; /* ให้ select ใช้พื้นที่ที่เหลือ */
+    border-radius: 5px; /* ขอบมน */
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.form-select:focus{
+    border-color: #f57c00;
+}
+
+.form-select option[selected] {
+    color: #888; /* เปลี่ยนสีข้อความเป็นสีเทา */
+}
+
+/* Button
+button {
+    background-color: #ff9800;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+ 
+button:hover {
+    background-color: #f57c00;
+}
+*/
+
+/* จัดตำแหน่งปุ่มชิดขวา */
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end; /* จัดชิดขวา */
+    width: 100%; /* กว้างเต็มหน้าจอ */
+    margin-top: 20px; /* เพิ่มระยะห่างจาก container */
+}
+
+.button-wrapper button {
+    font-family: 'Kanit', sans-serif; /* เปลี่ยนฟอนต์ */
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ให้ปุ่มชิดกับขอบของ container */
+.align-to-container {
+    max-width: 900px; /* กำหนดให้ตรงกับ container */
+    margin: 0 auto; /* จัดตรงกลาง */
+}
+
+.button-wrapper button:hover {
+    background-color: #f57c00;
+}
+
+/* Response message */
+#response {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: green;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}

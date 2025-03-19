@@ -1,0 +1,344 @@
+html body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Kanit', 'Poppins', sans-serif;
+    background-color: #fff3e0;
+}
+
+/* ปุ่มล็อกอิน */
+.login-btn-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 6px;
+    font-size: 1.5rem;
+    color: #ff7043;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.login-btn-icon:hover {
+    color: #f4511e;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* ปุ่มค้นหา */
+.search-btn-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 6px;
+    font-size: 1.5rem;
+    color: #ff7043;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.search-btn-icon:hover {
+    color: #f4511e;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* ระยะห่างปุ่ม */
+.search-form .login-btn-icon,
+.search-form .search-btn-icon {
+    margin-right: 10px;
+}
+
+/* กล่องครอบช่องค้นหา */
+.custom-search-wrapper {
+    min-width: 0;
+    width: 400px;
+}
+
+/* กล่องรวมไอคอน + input + ปุ่ม */
+.search-input-container {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ff7a52;
+    border-radius: 999px;
+    overflow: hidden;
+    background-color: white;
+}
+
+/* input แบบโค้งมน */
+.custom-search-input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 10px 16px;
+    font-size: 1rem;
+    flex-grow: 1;
+    border-radius: 999px;
+    font-style: italic;
+}
+
+.custom-search-input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+.custom-search-input:focus {
+    background-color: #fffefb;
+    box-shadow: 0 0 0 2px rgba(255, 122, 82, 0.2);
+}
+
+/* ปุ่มค้นหา */
+.custom-search-button {
+    height: 100%;
+    width: 42px;
+    aspect-ratio: 1 / 1;
+    border-radius: 999px;
+    background-color: #ff7a52;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    white-space: nowrap
+}
+
+.custom-search-button:hover {
+    background-color: #ff7043;
+    cursor: pointer;
+}
+
+/* ----------------------------------------------------------------------- */
+/* KMITL News & ข่าวประชาสัมพันธ์ */
+.title {
+    /* text-align: center; */
+    margin-top: 10px;
+}
+
+/* KMITL News */
+.title h1 {
+    font-family: "Kanit", sans-serif;
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 650;
+    color: #e65100;
+    /* สีเข้มขึ้นเพื่อเพิ่มความโดดเด่น */
+    margin-top: 10px;
+}
+
+/* ข่าวประชาสัมพันธ์ */
+.title p {
+    font-family: "Kanit", sans-serif;
+    font-size: 27px;
+    color: #ff7043;
+}
+
+/* -------------------------------------------------------------- */
+
+/* เลเอาท์ของข่าวและปลั๊กอิน */
+.layout-container {
+    display: flex;
+    gap: 24px;
+    padding: 20px;
+}
+
+/* ข่าว */
+.main-content {
+    flex: 3;
+}
+
+/* คอนเทนเนอร์ข่าว */
+.facebook-plugin-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: auto;
+    width: 450px;
+    overflow: hidden;
+
+    justify-content: center;
+    /* จัดให้อยู่ตรงกลาง */
+    align-items: flex-start;
+
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* ปรับขนาด Facebook Plugin */
+#facebook-plugin-container .fb-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    overflow: hidden;
+}
+
+/* ปรับ iframe ให้โหลดเต็มพื้นที่ */
+#facebook-container iframe {
+    width: 100% !important;
+    height: 1000px !important;
+    /* ให้ขยายตามเนื้อหา */
+}
+
+/* หมวดหมู่เฟซบุ๊ค */
+.facebook-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+/* ปุ่มเลือกหมวดหมู่เพจ */
+.tab-button {
+    background-color: #ff7a52;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #e95c35;
+}
+
+.tab-button.active {
+    background-color: #d84315;
+}
+
+/* -------------------------------------------------------------------- */
+
+.news-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .news-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .news-item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1%;
+    width: calc(33.333% - 14px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  
+  .news-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .news-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .news-head {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .news-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-top: 10px;
+    color: #888;
+  }
+  
+  .news-footer i {
+    margin-right: 5px;
+  }
+  
+  .news-category {
+    color: #ff9800;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
+    padding: 20px;
+  }
+  
+  .modal-content {
+    background-color: white;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+    max-height: 80vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+  
+  .modal-image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 10 auto;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    z-index: 10;
+  }
+  
+  .modal-title {
+    color: #e65100;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 30px;
+  }
+  
+  .modal-body {
+    flex-grow: 1;
+    overflow: visible;
+    max-height: none;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  .modal-category {
+    font-weight: bold;
+    color: #e65100;
+  }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="post.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <h1 class="text-center">แบบฟอร์มเขียนข่าวสาร</h1>
+
+    <div class="container custom-container">
+        <form id="newsForm" enctype="multipart/form-data">
+            <label for="title">หัวข้อข่าวสาร :</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+            <br>
+
+            <label for="content">รายละเอียดข่าว :</label>
+            <textarea id="content" name="content" class="form-control custom-textarea" required></textarea>
+            <br>
+
+            <label for="formFile" class="form-label">รูปภาพ (ถ้ามี) :</label>
+            <input class="form-control" type="file" id="formFile" name="image" accept="image/*">
+            <img id="imagePreview" style="max-width: 100%; margin-top: 10px; display: none;" alt="ตัวอย่างภาพ">
+            <br>
+
+            <div class="form-group">
+                <label for="select">หน่วยงานที่ให้ข้อมูล :</label>
+                <select class="form-select" id="positionSelect" required>
+                    <option value="" selected disabled>เลือกสาขา / ส่วน / ฝ่าย</option>
+                    <option value="1">งานกิจการนักศึกษา</option>
+                    <option value="2">งานทะเบียนและประมวลผล</option>
+                    <option value="3">งานบริหารทรัพยากรบุคคล/งานนิติกร</option>
+                    <option value="4">งานบริหารการวิจัย</option>
+                    <option value="5">งานแผนงาน</option>
+                    <option value="6">งานการเงินและบัญชี</option>
+                    <option value="7">ประกันคุณภาพการศึกษา</option>
+                    <option value="8">งานบริหารวิชาการและบัณฑิตศึกษา</option>
+                    <option value="9">งานบริการวิชาการ</option>
+                    <option value="10">งานพัสดุ</option>
+                    <option value="11">สโมสรนักศึกษา</option>
+                    <option value="12">นักศึกษาทั่วไป</option>
+                  </select>
+                  
+                <br>
+            </div>
+        </form>
+    </div>
+
+    <div class="align-to-container">
+        <div class="button-wrapper">
+            <button id="submitButton" type="button" class="btn btn-primary">โพสต์ข่าว</button>
+        </div>
+    </div>
+
+    <div id="response"></div>
+
+    <script>
+        // แสดงตัวอย่างภาพ
+        document.getElementById('formFile').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+        // ฟังก์ชันส่งฟอร์ม
+        document.getElementById('submitButton').addEventListener('click', function () {
+            const title = document.getElementById('title').value.trim();
+            const content = document.getElementById('content').value.trim();
+            const position = document.getElementById('positionSelect').value;
+            const image = document.getElementById('formFile').files[0];
+
+            if (!title || !content || !position) {
+                alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('content', content);
+            formData.append('position', position);
+            if (image) {
+                formData.append('image', image);
+            }
+
+            // เช็คข้อมูลที่ส่ง (Debug)
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ':', pair[1]);
+            }
+
+            fetch('post.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.text())
+                .then(response => {
+                    console.log('Response:', response);
+                    if (response.includes("success")) {
+                        alert('โพสต์สำเร็จแล้ว!');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('เกิดข้อผิดพลาด: ' + response);
+                    }
+                })
+                .catch(err => {
+                    console.error('Fetch error:', err);
+                    alert('เกิดข้อผิดพลาดในการเชื่อมต่อ: ' + err);
+                });
+        });
+    </script>
+</body>
+</html>

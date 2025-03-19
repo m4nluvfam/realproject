@@ -1,0 +1,68 @@
+/* HTML */
+html {
+    font-size: 24px;
+    font-family: "Kanit", sans-serif;
+}
+
+body{
+    font-family: "Kanit", sans-serif;
+    background-color: #fff3e0;
+}
+
+/* ปรับแต่ง center-screen */
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* จัดกลางแนวตั้ง */
+    align-items: center; /* จัดกลางแนวนอน */
+    height: 100%; /* ให้เต็มพื้นที่จอ */
+    text-align: center; /* จัดข้อความอยู่กึ่งกลาง */
+}
+
+/* ข้อความหลักของ page : Header */
+.text-center {
+    color: #f57c00;
+}
+
+/* Buttons */
+.centered-container {
+    display: flex;            /* ใช้ Flexbox */
+    flex-direction: column;   /* ทำให้ปุ่มเรียงในแนวตั้ง */
+    justify-content: center;  /* จัดปุ่มให้อยู่กลางแนวตั้ง */
+    align-items: center;      /* จัดปุ่มให้อยู่กลางแนวนอน */
+}
+
+.custom-btn {
+    font-size: 18px;
+    padding: 12px 20px;
+    background-color:#ff9800;
+    width: 50%; /* กำหนดความกว้างเริ่มต้นเป็น 50% */
+    max-width: 300px; /* จำกัดความกว้างสูงสุด */
+    margin: 10px 0; /* เพิ่มช่องว่างระหว่างปุ่ม */
+    border-radius: 8px; /* มุมโค้ง */
+    transition: all 0.3s ease; /* แอนิเมชันเวลาโฮเวอร์ */
+}
+
+/* ปรับสีสำหรับปุ่มแรก */
+.custom-btn-primary {
+    background-color: #ff9800;
+    color: #ffffff; /* สีตัวอักษร */
+}
+
+.custom-btn-primary:hover {
+    background-color: #f57c00; /* สีพื้นหลังเวลาโฮเวอร์ */
+    color: #e6e6e6; /* สีตัวอักษรเวลาโฮเวอร์ */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
+}
+
+/* ปรับสีสำหรับปุ่มที่สอง */
+.custom-btn-secondary {
+    background-color: #ff9800;
+    color: #ffffff; /* สีตัวอักษร */
+}
+
+.custom-btn-secondary:hover {
+    background-color: #f57c00;
+    color: #e6e6e6; /* สีตัวอักษรเวลาโฮเวอร์ */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}

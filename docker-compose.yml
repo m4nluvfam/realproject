@@ -11,6 +11,7 @@ services:
     volumes:
       - ./php/src:/var/www/html/      # แมปโฟลเดอร์ src ทั้งหมด
       - ./php/src/image:/var/www/html/image  # แมปโฟลเดอร์ image โดยตรง
+      - ./php:/var/www/html/php 
     ports:
       - 8080:80
 

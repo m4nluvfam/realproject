@@ -1,88 +1,120 @@
 html body {
-    font-family: "Kanit", "Poppins", sans-serif;
     margin: 0;
     padding: 0;
+    font-family: 'Kanit', 'Poppins', sans-serif;
     background-color: #fff3e0;
-    /* ปิดขอบข้างที่ทำให้เกิดแถบเลื่อน */
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-}
-
-/* จอใหญ่ */
-#fullUI {
-    display: block;
-}
-
-/* Navbar styling */
-.navbar {
-    background-color: #fff3e0;
-    padding: 10px 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.search-form{
-    width: 100% !important; /* กำหนดความกว้างของฟอร์ม */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-}
-
-.input-group {
-    max-width: 500px;
-}
-
-/* ช่องค้นหา */
-.input-group .form-control {
-    border-radius: 20px ; 
-    border: 1px solid #ccc ; /* เส้นขอบ */
-    transition: all 0.3s ease; /* เพิ่มเอฟเฟกต์ตอนโฟกัส */
-}
-
-.input-group .form-control:focus {
-    border-color: #5b98ba ;
-    box-shadow: 0 0 5px rgba(91, 152, 186, 0.5) ;
-    outline: none ;
-}
-
-/* ปุ่มค้นหา */
-.input-group .btn {
-    color: black ;
-    background-color: #fff;
-    border-width: 1px ;
-    border-color: #d3d3d3 ;
-    border-radius: 20px ;
-    cursor: pointer ;
-    transition: background-color 0.3s ease ;
-}
-
-.input-group .btn:hover {
-    color: black !important;
-    background-color: #e6510018 ;
 }
 
 /* ปุ่มล็อกอิน */
-.search-form .btn-primary {
-    background-color: black; /* สีพื้นหลังปุ่ม */
-    color: white; /* สีข้อความ */
-    border: none; /* ลบขอบ */
-    border-radius: 180px; /* มุมโค้ง */
-    font-size: 16px;
+.login-btn-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 6px;
+    font-size: 1.5rem;
+    color: #ff7043;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.login-btn-icon:hover {
+    color: #f4511e;
+    transform: scale(1.2);
     cursor: pointer;
-    transition: background-color 0.3s; /* เพิ่มเอฟเฟกต์เวลาเลื่อนเมาส์ */
-    margin-left: 10px;
 }
 
-.search-form .btn-primary:hover {
-    background-color: #e65100; /* สีพื้นหลังปุ่ม */
-    color: white; /* สีข้อความ */
-    border: none; /* ลบขอบ */
+/* ปุ่มค้นหา */
+.search-btn-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 6px;
+    font-size: 1.5rem;
+    color: #ff7043;
+    transition: color 0.3s, transform 0.2s;
 }
 
+.search-btn-icon:hover {
+    color: #f4511e;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* ระยะห่างปุ่ม */
+.search-form .login-btn-icon,
+.search-form .search-btn-icon {
+    margin-right: 10px;
+}
+
+/* กล่องครอบช่องค้นหา */
+.custom-search-wrapper {
+    min-width: 0;
+    width: 400px;
+}
+
+/* กล่องรวมไอคอน + input + ปุ่ม */
+.search-input-container {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ff7a52;
+    border-radius: 999px;
+    overflow: hidden;
+    background-color: white;
+}
+
+/* ช่องค้นหา */
+.custom-search-input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 10px 16px;
+    font-size: 1rem;
+    flex-grow: 1;
+    border-radius: 999px;
+    font-style: italic;
+}
+
+.custom-search-input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+.custom-search-input:focus {
+    background-color: #fffefb;
+    box-shadow: 0 0 0 2px rgba(255, 122, 82, 0.2);
+}
+
+/* ปุ่มค้นหา */
+.custom-search-button {
+    height: 100%;
+    width: 42px;
+    aspect-ratio: 1 / 1;
+    border-radius: 999px;
+    background-color: #ff7a52;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    /* white-space: nowrap */
+}
+
+.custom-search-button:hover {
+    background-color: #ff7043;
+    cursor: pointer;
+}
+
+/* ----------------------------------------------------------------------- */
 /* KMITL News & ข่าวประชาสัมพันธ์ */
 .title {
-    text-align: center;
+    /* text-align: center; */
     margin-top: 10px;
+    text-align: left;
+    padding: 0 30px;
 }
 
 /* KMITL News */
@@ -91,163 +123,234 @@ html body {
     font-size: 50px;
     line-height: 50px;
     font-weight: 650;
-    color: #e65100; /* สีเข้มขึ้นเพื่อเพิ่มความโดดเด่น */
+    color: #e65100;
     margin-top: 10px;
 }
 
 /* ข่าวประชาสัมพันธ์ */
 .title p {
     font-family: "Kanit", sans-serif;
-    font-size: 27px;
-    color: #ff7043;
+    font-size: 28px;
+    color: #0e0604;
+    margin-top: 0;
 }
 
-/* ปุ่มเลือกหมวดหมู่ */
-.nav-pills {
+/* -------------------------------------------------------------- */
+
+/* เลเอาท์ของข่าวและปลั๊กอิน */
+.layout-container {
     display: flex;
+    gap: 24px;
+    padding: 20px;
+}
+
+
+/* Layout หลัก 
+.layout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 32px;
+}
+*/
+
+/* ปรับ layout container ให้เป็นแถว: ข่าวซ้าย / Facebook ขวา 
+.layout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 32px;
+}
+*/
+
+/* ข่าว */
+.main-content {
+    flex: 3;
+    margin-right: 480px; /* เว้นที่ให้ปลั๊กอินเฟซบุ๊คด้านขวา */
+}
+
+/* ปรับ Facebook plugin container ให้อยู่ด้านขวาสวยงาม 
+.facebook-plugin-container {
+    position: relative;
+    width: 420px;
+    flex-shrink: 0;
+    background-color: #fdfdfd;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+*/
+
+.facebook-plugin-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: auto;
+    width: 450px;
+    overflow: hidden;
+
     justify-content: center;
-    background-color: #424242;
-    border-radius: 15px;
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
+    align-items: flex-start;
+
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
-.nav-item {
-    flex-grow: 1;
+/* ปรับขนาด Facebook Plugin */
+.facebook-plugin-container .fb-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    overflow: hidden;
 }
 
-.nav-link {
-    padding: 15px 0;
-    color: #fff !important;
-    border-radius: 15px;
-    text-align: center;
-    width: 100%;
-    transition: background-color 0.3s ease;
+/* ปรับ iframe ให้โหลดเต็มพื้นที่ */
+.facebook-plugin-container iframe {
+    width: 100% !important;
+    height: 1000px !important;
+    border: none;
 }
 
-/* ปุ่มที่เลือก */
-.nav-pills .nav-link.active {
-    background-color: #e65100 !important;
+/* หมวดหมู่เฟซบุ๊ค 
+.facebook-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+*/
+.facebook-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    justify-content: center;
+}
+
+.fb-tab-page {
+    height: 100%;
+  }
+
+  .fb-tab-page .fb-page {
+    width: 100% !important;
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  }
+
+/* ปุ่มเลือกหมวดหมู่เพจ */
+.tab-button {
+    background-color: #ff7a52;
     color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.75rem;
     transition: background-color 0.3s ease;
 }
 
-/* ปุ่มที่ไม่ได้เลือกเมื่อเอาเมาส์ไปวาง (hover) */
-.nav-link:hover {
-    background-color: #ff7043 !important;
-    color: #fff !important;
+/* ปุ่มแท็บ Facebook 
+.tab-button {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    border: none;
+    background-color: #ff7043;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+*/
+
+.tab-button:hover {
+    background-color: #e95c35;
 }
 
+.tab-button.active {
+    background-color: #d84315;
+}
 
-/* กล่องที่ใช้ในการแสดงข่าวทั้งหมด */
+/* -------------------------------------------------------------------- */
+
+/* ข่าว */
 .news-carousel {
     display: flex;
-    flex-direction: column; /* จัดแถวเป็นคอลัมน์ */
+    flex-direction: column;
     gap: 20px;
-    padding: 15px 100px;
-}
-
-/* จัดให้ข่าวเรียงเป็น 3 ข่าวต่อแถว */
-.news-row {
+  }
+  
+  .news-row {
     display: flex;
-    justify-content: center; /* จัดข่าวให้อยู่ตรงกลาง */
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
     gap: 20px;
-    width: 100%;
-}
-
-/* ส่วนของข่าว */
-.news-item {
+  }
+  
+  .news-item {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 1%;
-    width: calc(33.333% - 20px);
-    height: 480px;
+    padding: 1rem;
+    /* width: calc(33.333% - 14px); */
+    width: calc(50% - 10px); /* 2 ข่าวต่อแถว */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-/* ถ้ามีข่าวเหลือ 1 ข่าวในแถวสุดท้าย → ให้อยู่ตรงกลาง */
-.news-row:has(.news-item:nth-child(1):last-child) {
-    justify-content: center;
-}
-
-/* ถ้ามีข่าวเหลือ 2 ข่าว → ให้อยู่ตรงกลาง */
-.news-row:has(.news-item:nth-child(2):last-child) {
-    justify-content: space-evenly;
-}
-
-/* วันที่ของข่าว */
-.news-date {
-    display: flex; /* ใช้ flexbox */
-    align-items: center; /* จัดให้ไอคอนและข้อความอยู่แนวเดียวกัน */
-    justify-content: flex-start; /* ทำให้ทุกอย่างชิดซ้าย */
-    font-size: 14px;
-    color: #888;
-    position: absolute;
-    bottom: 0px; /* ชิดด้านล่างของกล่องข่าว */
-    left: 15px; /* ชิดซ้ายของกล่องข่าว */
-    width: auto; /* ให้ขนาดอัตโนมัติ ไม่ขยายเต็มพื้นที่ */
-    white-space: nowrap; /* ป้องกันขึ้นบรรทัดใหม่ */
-}
-
-/* เพิ่มระยะห่างระหว่างไอคอนและวันที่ */
-.news-date i {
-    margin-right: 5px; 
-}
-
-/* ส่วนของข่าวเวลาเอาเมาส์มาวางค้างไว้ */
-.news-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* ข่าวจากสำนักไหน */
-.news-category {
-    font-size: 14px;
-    color: #ff9800 !important; /* สีส้ม */
-    border: none !important;
-    background: none !important;
-    font-weight: normal;
+    transition: transform 0.3s;
     cursor: pointer;
-    position: absolute;
-    bottom: 11px;
-    right: 15px; /* ทำให้หมวดหมู่อยู่ชิดขวา */
-}
-
-.news-category:hover {
-    color: #e65100 !important;
-    background-color: #ffffff;
-}
-
-/* ส่วนรูปของข่าว */
-.news-item img {
+  }
+  
+  .news-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .news-item img {
     width: 100%;
-    height: 270px;
-    display: block;
-    border-radius: 8px;
+    height: 180px;
     object-fit: cover;
-}
-
-/* ส่วนเนื้อหาของข่าว */
-.news-item h3{
-    font-family: "Kanit", sans-serif;
-    font-weight: 200;
-    font-size: 18px;
-    margin-top: 25px;
-    line-height: 1.5;
+    border-radius: 8px;
+  }
+  
+  /*  
+  .news-head {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
     color: #333;
-}
+  }
+  */
 
-a {
-    text-decoration: none !important;
+  .news-head {
+    font-size: 1.1rem;
+    margin-top: 12px;
+    font-weight: 600;
 }
-
-/* ป๊อปอัพแบบเต็มจอ (Background) */
-.modal {
+  
+  .news-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #888;
+  }
+  
+  .news-footer i {
+    margin-right: 5px;
+  }
+  
+  .news-category {
+    color: #ff9800;
+  }
+  
+  .modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -256,15 +359,13 @@ a {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
     justify-content: center;
     align-items: center;
     overflow-y: hidden;
     padding: 20px;
-}
-
-/*  กล่องเนื้อหาของ Modal */
-.modal-content {
+  }
+  
+  .modal-content {
     background-color: white;
     width: 90%;
     max-width: 600px;
@@ -272,16 +373,15 @@ a {
     border-radius: 10px;
     position: relative;
     text-align: center;
-    max-height: 80vh; /*  กำหนดขนาดพอดีกับหน้าจอ */
-    overflow-y: scroll; /*  ให้ Scroll ได้ทั้ง Modal */
+    max-height: 80vh;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    scrollbar-width: thin; /*  ปรับให้แถบเลื่อนบางลง */
-    scrollbar-color: #888 #f1f1f1; /* กำหนดสีแถบเลื่อน */
-}
-
-/* รูปข่าว */
-.modal-image {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+  
+  .modal-image {
     width: auto;
     height: auto;
     max-width: 100%;
@@ -289,10 +389,9 @@ a {
     margin: 10 auto;
     margin-top: 10px;
     border-radius: 8px;
-}
-
-/* ปิดป๊อปอัพ */
-.close {
+  }
+  
+  .close {
     position: absolute;
     top: 5px;
     right: 10px;
@@ -300,69 +399,38 @@ a {
     cursor: pointer;
     color: #333;
     z-index: 10;
-}
-
-.modal-title{
+  }
+  
+  .modal-title {
     color: #e65100;
     font-size: 20px;
     font-weight: 700;
     margin-top: 30px;
-}
-
-/* ส่วนเนื้อหาข่าว */
-.modal-body {
+  }
+  
+  .modal-body {
     flex-grow: 1;
     overflow: visible;
     max-height: none;
     text-align: left;
     padding: 10px;
-}
-
-/* หมวดหมู่ข่าว */
-.modal-category {
+  }
+  
+  .modal-category {
     font-weight: bold;
     color: #e65100;
-}
+  }
 
-
-/* ปรับ container ให้พอดีกับ Facebook Plugin */
-#facebook-container {
+/* แท็บ Facebook */
+.facebook-tabs {
     display: flex;
-    justify-content: center; /* จัดให้อยู่ตรงกลาง */
-    align-items: flex-start;
-    width: 100%;
-    max-width: 500px; /* จำกัดความกว้างสูงสุด */
-    margin: 20px auto;
-    padding: 15px;
-    background-color: #f5f5f5; /* เพิ่มพื้นหลังให้ดูโดดเด่น */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    gap: 8px;
+    margin-bottom: 12px;
+    justify-content: center;
 }
 
-/* ปรับให้เลื่อนลงได้ */
-#facebook-container-scroll {
-    width: 100%;
-    height: 800px; /* เริ่มต้นความสูง */
-    max-height: 100vh;
-    overflow-y: auto; /* ให้ scroll ได้ */
-}
 
-/* ปรับขนาด Facebook Plugin */
-#facebook-container .fb-page {
-    width: 100% !important;
-    max-width: 500px !important;
-    height: 100% !important;
-    overflow: hidden;
-}
-
-/* ปรับ iframe ให้โหลดเต็มพื้นที่ */
-#facebook-container iframe {
-    width: 100% !important;
-    height: 1000px !important; /* ให้ขยายตามเนื้อหา */
-}
-
-/* --------------------------------------------------- */
-
+/* -------------------------------------------- */
 /* แถบด้านข้าง */
 #notificationUI {
     width: 100vw;
@@ -386,6 +454,7 @@ a {
     align-items: center;
     justify-content: center;
 }
+
 
 /* Facebook Plugin */
 #facebook-container-noti .fb-page {
@@ -453,19 +522,96 @@ h2 {
     margin-top: 15px;
 }
 
-/* ส่วนของข่าว */
+/* ส่วนของข่าว 
 #notificationUI .news-item-noti{
-    display: flex;  /* ให้รูปและเนื้อหาอยู่ในแนวนอน */
-    align-items: flex-start;  /* จัดให้เนื้อหาอยู่ด้านบน */
+    display: flex;  /* ให้รูปและเนื้อหาอยู่ในแนวนอน 
+    align-items: flex-start;  /* จัดให้เนื้อหาอยู่ด้านบน 
     background-color: #fff;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     gap: 10px;
-    position: relative; /* ใช้สำหรับจัดตำแหน่งของวันที่และหมวดหมู่ */
-    min-height: 100px; /* กำหนดความสูงขั้นต่ำเพื่อรองรับเนื้อหา */
+    position: relative; /* ใช้สำหรับจัดตำแหน่งของวันที่และหมวดหมู่ 
+    min-height: 100px; /* กำหนดความสูงขั้นต่ำเพื่อรองรับเนื้อหา 
 }
+*/
+
+#notificationUI .news-item-noti {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+/* กล่องย่อ: แสดงเฉพาะ .news-summary */
+#notificationUI .news-item-noti .news-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* ส่วนที่แสดงเนื้อหาเพิ่มเติม (ซ่อนในตอนแรก) */
+#notificationUI .news-item-noti .news-extra {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 5px;
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 6px;
+  }
+  
+  /* ขยายกล่องเมื่อกดอ่านเพิ่มเติม */
+  #notificationUI .news-item-noti.expanded {
+    background-color: #fff7f2;
+    box-shadow: 0 0 6px rgba(255, 112, 67, 0.4);
+  }
+  
+  #notificationUI .news-item-noti.expanded .news-extra {
+    max-height: 1000px; /* พอสำหรับเนื้อหายาว */
+  }
+
+  /* เพิ่วเพิ่ม */
+  #notification .news-item-noti.expanded .news-details-expanded {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  #notification .news-details-expanded {
+    display: none;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* ปุ่ม "อ่านเพิ่มเติม" */
+  #notificationUI  .read-more-toggle {
+    color: #6d6c6c7a;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-left: 5px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* ปรับแต่งลิงก์ในเนื้อหาให้สวย */
+  #notificationUI .news-extra a {
+    color: #0077cc;
+    text-decoration: underline;
+    word-break: break-word;
+  }
+  
+  /* ย่อหน้าในเนื้อหา */
+  #notificationUI  .news-extra p {
+    margin-bottom: 6px;
+  }
+  
 
 /* รูปของข่าว */
 #notificationUI .news-item-noti img {
@@ -555,7 +701,7 @@ h2 {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 500px; /* ปรับขนาดสูงสุด */
+    max-width: 1000px; /* ปรับขนาดสูงสุด */
     height: 700px; /* ปรับความสูง */
     margin-top: 15px;
     padding: 10px;
@@ -574,6 +720,34 @@ h2 {
 #facebook-container-noti {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.facebook-tabs-noti {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 10px auto;
+    flex-wrap: wrap;
+}
+
+.fb-tab-noti {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    border: none;
+    background-color: #ff7a52;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.fb-tab-noti.active {
+    background-color: #d84315;
+}
+
+.fb-tab-page-noti {
+    display: none;
+}
+
 
 /* ซ่อน scrollbar */
 ::-webkit-scrollbar {
