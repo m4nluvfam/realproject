@@ -1,0 +1,193 @@
+html {
+    font-size: 16px;
+    font-family: "Kanit", "Poppins", sans-serif;
+  }
+  
+  body {
+    font-family: "Kanit", sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+  }
+  
+  /* ----------------------------------------------- */
+  /* Sidebar */
+  .sidebar {
+    background-color: #333333 !important; 
+    height: 100vh;
+    padding-top: 30px;
+  }
+  
+  /* Sidebar - info*/
+  .sidebar-header {
+    font-family: "Kanit", "Poppins", sans-serif;
+    margin-bottom: 30px;
+  }
+  
+  h4{
+    font-weight: 600;
+    font-size: 2rem;
+  }
+  
+  /* ชื่อย่อ */
+  .user-initials {
+    background-color: #5e4434;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .styled-hr {
+    color: #f57c00;
+  }
+  
+  /* User Management */
+  .sidebar h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  /* User , Add User */
+  .nav-item {
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .nav-link {
+    color: #ecf0f1 !important;
+    padding: 10px 15px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* สีลิงก์ที่กำลังถูกเลือก */
+  .nav-link.active {
+    background-color: #FFE0B2; /* สีเข้มสำหรับลิงก์ที่เลือก */
+    color: #000000 !important; /* สีข้อความ */
+    border-radius: 8px;
+  }
+  
+  /* เปลี่ยนสีลิงก์เมื่อ Hover */
+  .nav-link:hover {
+    background-color: #FFB74D; /* สีเข้มขึ้นเมื่อ Hover */
+    color: #000000 !important;
+    border-radius: 8px;
+  }
+  
+  /* Logout button */
+  .logout-btn {
+    position: absolute;
+    bottom: 20px;
+    width: 10%;
+    background-color: #333333;
+    border-color: #f57c00;
+  }
+  
+  /* -------------------------------------------------------- */
+  /* Main Content */
+  .content {
+    padding: 30px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  .content p {
+    font-size: 1.4rem;
+    margin-top: 25px;
+    text-decoration: underline;
+  }
+  
+  /* User , Add User */
+  .title-link{
+    font-size: 2.5rem; /* = 40px */
+    margin-bottom: 20px;
+  }
+  
+  /* Modal Styling (POP-UP) Add User*/
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .modal-header{
+    background-color: #FFE0B2;
+  }
+  
+  /*Edit User */
+  .modal-title {
+    font-size: 1.25rem; /* = 20px */
+  }
+  
+  /* Role */
+  
+  
+  .mb-3 input[type="radio"] {
+    margin-left: 20px; /* เยื้อง radio และข้อความไปทางขวา */
+    margin-right: 7px; /* เพิ่มระยะห่างระหว่าง radio และ label */  /* ระยะห่างระหว่าง Radio กับข้อความ */
+  }
+  
+  .btn-primary{
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover{
+    background-color: #f57c00;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
+  }
+  /* ------------------------------------------------------------------ */
+  /* Add user*/
+  
+  /* Add User Button */
+  .btn-success{
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-success:hover{
+    background-color: #f57c00;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
+  }
+  
+  /* Reset Button */
+  .btn-warning{
+    background-color: #8D8D8D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-warning:hover{
+    background-color: #6F6F6F;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
+  }
+  
+  
+  /* Cancle Button */
+  .btn-secondary{
+    background-color: #8D8D8D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover{
+    background-color: #6F6F6F;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
+  }

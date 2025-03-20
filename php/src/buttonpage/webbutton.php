@@ -37,7 +37,7 @@ $user_role = $_SESSION['role'];
 
                 <!-- ปุ่มสำหรับ Admin เท่านั้น -->
                 <?php if ($user_role == 2): ?>
-                    <a href="page2.html" class="btn custom-btn custom-btn-secondary" role="button">สำหรับ Admin เท่านั้น</a>
+                    <a href="../adminpage/admin.html" class="btn custom-btn custom-btn-secondary" role="button">สำหรับ Admin เท่านั้น</a>
                 <?php else: ?>
                     <button class="btn custom-btn custom-btn-secondary" disabled>สำหรับ Admin เท่านั้น</button>
                 <?php endif; ?>
