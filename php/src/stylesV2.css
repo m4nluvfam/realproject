@@ -306,6 +306,10 @@ html body {
     overflow: hidden;
     transition: transform 0.3s;
     cursor: pointer;
+
+    position: relative;        /* เพื่อให้ .news-footer ใช้ position absolute ได้ */
+    padding-bottom: 80px;      /* กันไม่ให้เนื้อหาทับ footer ด้านล่าง */
+
   }
   
   .news-item:hover {
@@ -317,6 +321,8 @@ html body {
     height: 180px;
     object-fit: cover;
     border-radius: 8px;
+
+    border: 1px solid #ccc; /* 🔧 เส้นขอบบาง สีเทาอ่อน */
   }
   
   /*  
@@ -329,26 +335,49 @@ html body {
   */
 
   .news-head {
-    font-size: 1.1rem;
-    margin-top: 12px;
-    font-weight: 600;
+  font-family: "Kanit", sans-serif;
+  font-size: 1.1rem;             /* 🔧 ขนาดพอเหมาะ */
+  font-weight: 500;              /* 🔧 ไม่หนาเกินไป */
+  line-height: 1.5;              /* ✅ ระยะบรรทัดให้พอดี */
+  margin-top: 12px;
+  color: #333;                   /* ✅ สีที่อ่อนลงจากสีดำสนิท */
 }
-  
+
+/* 
   .news-footer {
-    display: flex;
-    justify-content: space-between;
+    display: block;
     font-size: 0.9rem;
     margin-top: 10px;
     color: #888;
   }
+ */
+ .news-footer {
+    position: absolute;
+    margin-top: 20px;
+    bottom: 10px;              /* ระยะห่างจากขอบล่างของกล่อง */
+    left: 16px;                /* ระยะชิดซ้าย */
+    font-size: 0.9rem;
+    color: #888;
+    display: flex;
+    flex-direction: column;   /* จัดให้อยู่คนละบรรทัด */
+    align-items: flex-start;  /* ชิดซ้าย */
+  }
   
+
   .news-footer i {
     margin-right: 5px;
   }
   
   .news-category {
     color: #ff9800;
+    margin-top: 5px;
   }
+
+.news-footer p, .news-footer span {
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
   
   .modal {
     display: none;
@@ -389,6 +418,8 @@ html body {
     margin: 10 auto;
     margin-top: 10px;
     border-radius: 8px;
+
+    border: 1px solid #ccc; /* 🔧 เส้นขอบบาง สีเทาอ่อน */
   }
   
   .close {
@@ -403,9 +434,10 @@ html body {
   
   .modal-title {
     color: #e65100;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 16px; /* ✅ เพิ่มระยะห่างด้านล่าง */
   }
   
   .modal-body {
@@ -414,12 +446,36 @@ html body {
     max-height: none;
     text-align: left;
     padding: 10px;
+
+    margin-top: 16px;
+    margin-bottom: 16px;
+    line-height: 1.6; /* ✅ เพิ่มบรรทัดห่าง */
+    color: #444;
+    font-size: 16px;
   }
   
-  .modal-category {
-    font-weight: bold;
-    color: #e65100;
+  .modal-category, .modal-date {
+    font-weight: normal;
+    color: #666;
+
+    font-size: 14px;
+  /* margin-top: 0px; */
+  text-align: left;
   }
+
+  .modal-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 4px;
+  }
+  
+  .modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
 
 /* แท็บ Facebook */
 .facebook-tabs {
@@ -446,7 +502,7 @@ html body {
     margin: 0;
 }
 
-/* ปรับ Facebook Page ให้เต็มจอ */
+/* ปรับ Facebook Page ให้เต็มจอ 
 #facebook-container-noti {
     width: 100%;
     height: 100%;
@@ -454,16 +510,56 @@ html body {
     align-items: center;
     justify-content: center;
 }
+*/
+
+#facebook-container-noti {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    height: 700px; /* ✅ จำกัดความสูงของคอนเทนเนอร์ */
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* ✅ กันไม่ให้เนื้อหาล้น */
+}
 
 
 /* Facebook Plugin */
 #facebook-container-noti .fb-page {
     width: 100% !important;
     max-width: 100% !important;
-    height: 100vh !important;
+    height: 100% !important;
+    overflow: hidden;
+    /* 
     display: flex;
     align-items: center;
     justify-content: center;
+     */
+}
+
+/* ปรับขนาดของ Facebook Plugin ให้พอดีกับ Container 
+#facebook-container-noti .fb-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    overflow: hidden;
+}
+*/
+
+/* ปรับให้ Facebook Plugin มีเงา */
+#facebook-container-noti {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#facebook-container-noti iframe {
+    width: 100% !important;
+    height: 1000px !important;
+    border: none;
 }
 
 /* KMITL News */
@@ -594,7 +690,7 @@ h2 {
   #notificationUI  .read-more-toggle {
     color: #6d6c6c7a;
     font-size: 0.85rem;
-    font-weight: bold;
+    
     margin-left: 5px;
     cursor: pointer;
     text-decoration: underline;
@@ -695,32 +791,8 @@ h2 {
     background-color: #ffffff;
 }
 
-/* ปรับขนาดและจัดตำแหน่งของ Facebook Page Plugin */
-#facebook-container-noti {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1000px; /* ปรับขนาดสูงสุด */
-    height: 700px; /* ปรับความสูง */
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #f5f5f5; /* 🔥 เปลี่ยนสีพื้นหลังให้ดูโดดเด่นขึ้น */
-    border-radius: 10px; /* 🔥 เพิ่มขอบโค้งมน */
-}
 
-/* ปรับขนาดของ Facebook Plugin ให้พอดีกับ Container */
-#facebook-container-noti .fb-page {
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden;
-}
-
-/* ปรับให้ Facebook Plugin มีเงา */
-#facebook-container-noti {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+/* เลือกแท็บ */
 .facebook-tabs-noti {
     display: flex;
     gap: 8px;
@@ -729,6 +801,7 @@ h2 {
     flex-wrap: wrap;
 }
 
+/* แท็บ */
 .fb-tab-noti {
     padding: 6px 12px;
     font-size: 0.75rem;
@@ -745,7 +818,11 @@ h2 {
 }
 
 .fb-tab-page-noti {
-    display: none;
+    width: 100%;
+    height: 100%;
+    display: flex;                /* ✅ ทำให้จัดแนวลูก (fb-page) */
+    align-items: center;          /* ✅ จัดให้อยู่ตรงกลางแนวดิ่ง */
+    justify-content: center;      /* ✅ จัดให้อยู่ตรงกลางแนวนอน */
 }
 
 

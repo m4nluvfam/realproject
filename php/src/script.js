@@ -150,7 +150,7 @@ function buildNewsItem(news) {
         <div class="news-item" onclick='openNewsModal(${JSON.stringify(news)})'>
             <img src="${picture}" alt="${news.ns_head}">
             <h3 class="news-head">${news.ns_head}</h3>
-            <div class="news-footer">
+            <div class="news-footer">    
                 <p class="news-date">
                     <i class="fas fa-clock"></i> ${new Date(news.ns_date).toLocaleDateString()}
                 </p>

@@ -24,6 +24,10 @@ body{
     color: #f57c00;
 }
 
+p{
+    margin-bottom: 60px;
+}
+
 /* Buttons */
 .centered-container {
     display: flex;            /* ใช้ Flexbox */
@@ -38,12 +42,23 @@ body{
     background-color:#ff9800;
     width: 50%; /* กำหนดความกว้างเริ่มต้นเป็น 50% */
     max-width: 300px; /* จำกัดความกว้างสูงสุด */
-    margin: 10px 0; /* เพิ่มช่องว่างระหว่างปุ่ม */
+    /* margin: 10px 0; เพิ่มช่องว่างระหว่างปุ่ม */
     border-radius: 8px; /* มุมโค้ง */
     transition: all 0.3s ease; /* แอนิเมชันเวลาโฮเวอร์ */
 }
 
-/* ปรับสีสำหรับปุ่มแรก */
+/* ปรับสีสำหรับปุ่มหน้าหลัก */
+.custom-btn-home {
+    background-color: #ff9800;
+    color: #ffffff; /* สีตัวอักษร */
+}
+.custom-btn-home:hover {
+    background-color: #f57c00; /* สีพื้นหลังเวลาโฮเวอร์ */
+    color: #e6e6e6; /* สีตัวอักษรเวลาโฮเวอร์ */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
+}
+
+/* ปรับสีสำหรับปุ่มฟอมร์มเขียนข่าว */
 .custom-btn-primary {
     background-color: #ff9800;
     color: #ffffff; /* สีตัวอักษร */
@@ -55,7 +70,7 @@ body{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
 }
 
-/* ปรับสีสำหรับปุ่มที่สอง */
+/* ปรับสีสำหรับปุ่ม Admin */
 .custom-btn-secondary {
     background-color: #ff9800;
     color: #ffffff; /* สีตัวอักษร */
@@ -66,3 +81,4 @@ body{
     color: #e6e6e6; /* สีตัวอักษรเวลาโฮเวอร์ */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
+

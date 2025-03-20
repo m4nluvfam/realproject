@@ -33,11 +33,12 @@ $user_role = $_SESSION['role'];
 
             <!-- Buttons Section -->
             <div class="container text-center centered-container">
-                <a href="../postpage/post.html" class="btn custom-btn custom-btn-primary" role="button">ฟอร์มเขียนข่าวสาร</a>
+                <a href="../index.html" class="btn custom-btn custom-btn-home mb-3" role="button">หน้าหลัก</a>
+                <a href="../postpage/post.html" class="btn custom-btn custom-btn-primary mb-3" role="button">ฟอร์มเขียนข่าวสาร</a>
 
                 <!-- ปุ่มสำหรับ Admin เท่านั้น -->
                 <?php if ($user_role == 2): ?>
-                    <a href="../adminpage/admin.html" class="btn custom-btn custom-btn-secondary" role="button">สำหรับ Admin เท่านั้น</a>
+                    <a href="../adminpage/admin.html" class="btn custom-btn custom-btn-secondary mb-3" role="button">สำหรับ Admin เท่านั้น</a>
                 <?php else: ?>
                     <button class="btn custom-btn custom-btn-secondary" disabled>สำหรับ Admin เท่านั้น</button>
                 <?php endif; ?>
