@@ -20,7 +20,7 @@ body {
     max-width: 900px; /* จำกัดความกว้างสูงสุด */
 }
 
-.costom-container {
+.custom-container {
     
     height: auto; /* ปรับความสูงตามเนื้อหา */
     height: auto; /* ปรับความสูงตามเนื้อหา */
@@ -119,24 +119,6 @@ textarea:focus {
 .form-select option[selected] {
     color: #888; /* เปลี่ยนสีข้อความเป็นสีเทา */
 }
-
-/* Button
-button {
-    background-color: #ff9800;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
- 
-button:hover {
-    background-color: #f57c00;
-}
-*/
 
 /* จัดตำแหน่งปุ่มชิดขวา */
 .button-wrapper {
