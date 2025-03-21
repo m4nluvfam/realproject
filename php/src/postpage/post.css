@@ -175,6 +175,7 @@ button:hover {
     text-align: center;
 }
 
+
 /* Responsive design */
 @media (max-width: 768px) {
     .container {
