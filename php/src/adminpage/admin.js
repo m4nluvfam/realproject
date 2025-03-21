@@ -42,9 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function renderUserTable(filterText = "") {
         let tableHTML = `
-            <h1 class="title-link">User</h1>
-            <hr>
-            <input type="text" id="searchUser" class="form-control mb-3" placeholder="ค้นหาผู้ใช้...">
+            
+            
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -59,11 +58,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const filteredUsers = users.filter(user =>
             user.fullname.toLowerCase().includes(filterText.toLowerCase()) ||
-            user.email.toLowerCase().includes(filterText.toLowerCase())
+            user.email.toLowerCase().includes(filterText.toLowerCase()) ||
+            user.username.toLowerCase().includes(filterText.toLowerCase())
         );
 
         if (filteredUsers.length === 0) {
-            tableHTML += `<tr><td colspan="4" class="text-center">ไม่พบผู้ใช้</td></tr>`;
+            tableHTML += `<tr><td colspan="5" class="text-center">ไม่พบผู้ใช้</td></tr>`;
         }
 
         filteredUsers.forEach((user, index) => {
@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${index + 1}</td>
                     <td>${user.fullname}</td>
                     <td>${user.email}</td>
+                    <td>${user.role}</td>
                     <td>
                         <button class="btn btn-outline-warning btn-sm edit-btn" data-id="${user.id}">
                             <i class="fas fa-edit"></i> Edit
@@ -85,12 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         tableHTML += `</tbody></table>`;
-        document.getElementById("pageContent").innerHTML = tableHTML;
-
-        document.getElementById("searchUser").value = filterText;
-        document.getElementById("searchUser").addEventListener("input", function () {
-            renderUserTable(this.value);
-        });
+        document.getElementById("userTableArea").innerHTML = tableHTML;
 
         addEditDeleteListeners();
     }
@@ -175,6 +171,20 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 users = data;
+
+                document.getElementById("pageContent").innerHTML = `
+
+                <h1 class="title-link">User</h1>
+                <hr></hr>
+                <input type="text" id="searchUser" class="form-control mb-3" placeholder="ค้นหาชื่อ, อีเมล หรือชื่อผู้ใช้...">
+                <div id="userTableArea"></div>
+            `;
+
+                const searchInput = document.getElementById("searchUser");
+                searchInput.addEventListener("input", function () {
+                    renderUserTable(this.value);
+                });
+
                 renderUserTable();
             })
             .catch(err => {
