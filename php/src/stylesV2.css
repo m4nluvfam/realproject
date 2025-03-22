@@ -336,11 +336,11 @@ html body {
 
   .news-head {
   font-family: "Kanit", sans-serif;
-  font-size: 1.1rem;             /* 🔧 ขนาดพอเหมาะ */
-  font-weight: 500;              /* 🔧 ไม่หนาเกินไป */
-  line-height: 1.5;              /* ✅ ระยะบรรทัดให้พอดี */
+  font-size: 1.1rem;             /*  ขนาดพอเหมาะ */
+  font-weight: 500;              /*  ไม่หนาเกินไป */
+  line-height: 1.5;              /*  ระยะบรรทัดให้พอดี */
   margin-top: 12px;
-  color: #333;                   /* ✅ สีที่อ่อนลงจากสีดำสนิท */
+  color: #333;                   /* สีที่อ่อนลงจากสีดำสนิท */
 }
 
 /* 
@@ -419,7 +419,7 @@ html body {
     margin-top: 10px;
     border-radius: 8px;
 
-    border: 1px solid #ccc; /* 🔧 เส้นขอบบาง สีเทาอ่อน */
+    border: 1px solid #ccc; /*  เส้นขอบบาง สีเทาอ่อน */
   }
   
   .close {
@@ -437,7 +437,7 @@ html body {
     font-size: 24px;
     font-weight: 700;
     margin-top: 20px;
-    margin-bottom: 16px; /* ✅ เพิ่มระยะห่างด้านล่าง */
+    margin-bottom: 16px; /*  เพิ่มระยะห่างด้านล่าง */
   }
   
   .modal-body {
@@ -449,7 +449,7 @@ html body {
 
     margin-top: 16px;
     margin-bottom: 16px;
-    line-height: 1.6; /* ✅ เพิ่มบรรทัดห่าง */
+    line-height: 1.6; /*  เพิ่มบรรทัดห่าง */
     color: #444;
     font-size: 16px;
   }
@@ -459,8 +459,8 @@ html body {
     color: #666;
 
     font-size: 14px;
-  /* margin-top: 0px; */
-  text-align: left;
+    /* margin-top: 0px; */
+    text-align: left;
   }
 
   .modal-content::-webkit-scrollbar {
@@ -484,6 +484,33 @@ html body {
     margin-bottom: 12px;
     justify-content: center;
 }
+
+/* ลบ/แก้ไข 
+.news-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.edit-btn, .delete-btn {
+    background-color: #ff7043;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.edit-btn:hover {
+    background-color: #fb8c00;
+}
+
+.delete-btn:hover {
+    background-color: #e53935;
+}
+*/
 
 
 /* -------------------------------------------- */
@@ -519,13 +546,13 @@ html body {
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    height: 700px; /* ✅ จำกัดความสูงของคอนเทนเนอร์ */
+    height: 700px; /*  จำกัดความสูงของคอนเทนเนอร์ */
     margin-top: 15px;
     padding: 10px;
     background-color: #f5f5f5;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* ✅ กันไม่ให้เนื้อหาล้น */
+    overflow: hidden; /*  กันไม่ให้เนื้อหาล้น */
 }
 
 
@@ -820,9 +847,9 @@ h2 {
 .fb-tab-page-noti {
     width: 100%;
     height: 100%;
-    display: flex;                /* ✅ ทำให้จัดแนวลูก (fb-page) */
-    align-items: center;          /* ✅ จัดให้อยู่ตรงกลางแนวดิ่ง */
-    justify-content: center;      /* ✅ จัดให้อยู่ตรงกลางแนวนอน */
+    display: flex;                /*  ทำให้จัดแนวลูก (fb-page) */
+    align-items: center;          /*  จัดให้อยู่ตรงกลางแนวดิ่ง */
+    justify-content: center;      /*  จัดให้อยู่ตรงกลางแนวนอน */
 }
 
 
@@ -849,3 +876,52 @@ h2 {
         height: 350px !important;
     }
 }
+
+
+#scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    font-size: 12px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* ซ่อนปุ่มไว้ก่อน */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+  }
+  
+  #scrollTopBtn:hover {
+    background-color: #e65100;
+  }
+  
+/* 
+  .account-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 9999;
+}
+
+.account-menu button {
+    display: block;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.account-menu button:hover {
+    background-color: #f1f1f1;
+}
+ */

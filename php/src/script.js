@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("resize", handleResponsiveUI);
 
-// ✅ ตรวจสอบขนาดหน้าจอ
+//  ตรวจสอบขนาดหน้าจอ
 function handleResponsiveUI() {
     const width = window.innerWidth;
     const fullUI = document.getElementById('fullUI');
@@ -24,7 +24,7 @@ function handleResponsiveUI() {
     }
 }
 
-// ✅ Event Listeners
+//  Event Listeners
 function setupListeners() {
     const searchInput = document.getElementById("searchInput");
     if (searchInput) {
@@ -62,7 +62,7 @@ function setupListeners() {
     });
 }
 
-// ✅ Facebook Page Switch (Full UI)
+//  Facebook Page Switch (Full UI)
 function switchPage(pageId) {
     document.querySelectorAll('.fb-tab-page').forEach(el => el.style.display = 'none');
     document.getElementById(pageId).style.display = 'block';
@@ -78,9 +78,11 @@ function switchPage(pageId) {
     }
 }
 
-// ✅ ฟังก์ชันกรองข่าว
+//  ฟังก์ชันกรองข่าว
 function filterNews() {
     let query = document.getElementById("searchInput").value.toLowerCase();
+
+    
     let newsItems = document.querySelectorAll("#news-container .news-item, #news-container-noti .news-item-noti");
     let noResultsMessage = document.getElementById("noResultsMessage");
     let found = false;
@@ -108,9 +110,11 @@ function filterNews() {
         noResultsMessage.style.color = "red";
         document.getElementById("news-container").appendChild(noResultsMessage);
     }
+
+    
 }
 
-// ✅ โหลดข่าว
+//  โหลดข่าว
 function loadNews(category, isNotification = false) {
     let container = isNotification ? document.getElementById('news-container-noti') : document.getElementById('newsArea');
     container.innerHTML = '';
@@ -143,7 +147,7 @@ function loadNews(category, isNotification = false) {
         });
 }
 
-// ✅ Full UI
+//  Full UI
 function buildNewsItem(news) {
     const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
     return `
@@ -156,11 +160,88 @@ function buildNewsItem(news) {
                 </p>
                 <span class="news-category">${news.nsg_name}</span>
             </div>
+
+            
+
         </div>
     `;
 }
 
-// ✅ Notification UI
+// แก้ไข
+function openEditModal(news) {
+    document.getElementById("editNewsId").value = news.ns_id;
+    document.getElementById("editTitle").value = news.ns_head;
+    document.getElementById("editContent").value = news.ns_body;
+    document.getElementById("editCategory").value = news.nsg_name;
+    document.getElementById("editImage").value = news.ns_picture || '';
+  
+    document.getElementById("editModal").style.display = "flex";
+  }
+  
+  function closeEditModal() {
+    document.getElementById("editModal").style.display = "none";
+  }
+  
+  //  Submit การแก้ไข
+  const editForm = document.getElementById("editNewsForm");
+  editForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+  
+    const data = {
+      id: document.getElementById("editNewsId").value,
+      head: document.getElementById("editTitle").value,
+      body: document.getElementById("editContent").value,
+      category: document.getElementById("editCategory").value,
+      picture: document.getElementById("editImage").value
+    };
+  
+    fetch("update_news.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.text())
+    .then(response => {
+      alert("แก้ไขข่าวสำเร็จ");
+      closeEditModal();
+      location.reload();
+    })
+    .catch(error => {
+      alert("เกิดข้อผิดพลาด: " + error);
+    });
+  });
+
+// ลบ
+function deleteNews(newsId) {
+    if (confirm("คุณแน่ใจหรือไม่ว่าต้องการลบข่าวนี้?")) {
+        // เรียก PHP backend ไปลบ (ภายหลัง)
+        console.log("ลบข่าว:", newsId);
+    }
+}
+
+function confirmDelete(newsId) {
+    if (confirm("คุณแน่ใจหรือไม่ว่าต้องการลบข่าวนี้?")) {
+        fetch(`/delete_news.php?id=${newsId}`, {
+            method: "GET"
+        })
+        .then(res => res.text())
+        .then(response => {
+            alert(response);
+            // รีโหลดข่าวหลังจากลบ
+            const isNotification = window.innerWidth <= 500;
+            loadNews('news', isNotification);
+        })
+        .catch(err => {
+            alert("เกิดข้อผิดพลาดในการลบข่าว");
+            console.error(err);
+        });
+    }
+}
+
+
+//  Notification UI
 function buildNewsItemNoti(news) {
     const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
     return `
@@ -186,14 +267,14 @@ function buildNewsItemNoti(news) {
     `;
 }
 
-// ✅ รองรับบรรทัดใหม่ + ลิงก์
+//  รองรับบรรทัดใหม่ + ลิงก์
 function formatBody(text) {
     return text
         .replace(/\n/g, "<br>")
         .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
 }
 
-// ✅ Modal
+//  Modal
 function openNewsModal(news) {
     document.getElementById("modalTitle").innerText = news.ns_head;
     document.getElementById("modalImage").src = news.ns_picture ? news.ns_picture : "/image/image_b.png";
@@ -207,48 +288,52 @@ function closeNewsModal() {
     document.getElementById("newsModal").style.display = "none";
 }
 
-// ✅ Account
+//  Account
 function checkLoginStatus() {
-    let userLoggedIn = localStorage.getItem("userLoggedIn");
-    let accountButton = document.getElementById("accountButton");
+    const accountButton = document.getElementById("accountButton");
 
-    if (accountButton) {
-        if (userLoggedIn) {
-            accountButton.innerHTML = `<i class="fa-solid fa-user"></i>`;
-            accountButton.onclick = () => toggleAccountMenu();
-        } else {
-            accountButton.onclick = () => window.location.href = '/src/loginpage/login.html';
-        }
+    // ✅ สมมติใช้ localStorage แทน session
+    const userLoggedIn = localStorage.getItem("userLoggedIn");  // ถูก set หลัง login
+
+    if (userLoggedIn && accountButton) {
+        // ✅ ถ้าล็อกอินแล้ว
+        accountButton.innerHTML = `<i class="fa-solid fa-user"></i>`;
+        accountButton.onclick = toggleAccountMenu;
+    } else if (accountButton) {
+        // ❌ ถ้ายังไม่ได้ล็อกอิน
+        accountButton.onclick = () => window.location.href = '/loginpage/login.html';
     }
 }
 
 function toggleAccountMenu() {
-    let existingMenu = document.getElementById("accountMenu");
-    if (existingMenu) {
-        existingMenu.remove();
+    const existing = document.getElementById("accountMenu");
+    if (existing) {
+        existing.remove();
         return;
     }
 
-    let menu = document.createElement("div");
+    const menu = document.createElement("div");
     menu.id = "accountMenu";
-    menu.classList.add("account-menu");
+    menu.className = "account-menu";
     menu.innerHTML = `
         <button onclick="window.location.href='/post.html'">โพสต์ข่าว</button>
         <button onclick="logout()">ออกจากระบบ</button>
     `;
     document.body.appendChild(menu);
 
-    let rect = document.getElementById("accountButton").getBoundingClientRect();
+    const rect = document.getElementById("accountButton").getBoundingClientRect();
+    menu.style.position = "absolute";
     menu.style.top = `${rect.bottom + window.scrollY}px`;
     menu.style.left = `${rect.left + window.scrollX}px`;
 }
 
 function logout() {
     localStorage.removeItem("userLoggedIn");
-    window.location.reload();
+    location.reload();
 }
 
-// ✅ Expandable Read More
+
+//  Expandable Read More
 function setupExpandableNews() {
     const items = document.querySelectorAll(".news-item-noti.expandable");
     items.forEach(item => {

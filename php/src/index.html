@@ -119,6 +119,41 @@
         </div>
     </div>
 
+    <!--  Modal สำหรับแก้ไขข่าว 
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h3 class="modal-title">แก้ไขข่าว</h3>
+    
+            <form id="editNewsForm">
+                <input type="hidden" id="editNewsId">
+    
+                <div class="form-group">
+                    <label for="editTitle">หัวข้อข่าว</label>
+                    <input type="text" id="editTitle" class="form-control" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="editContent">เนื้อหาข่าว</label>
+                    <textarea id="editContent" class="form-control" rows="5" required></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="editCategory">หมวดหมู่</label>
+                    <input type="text" id="editCategory" class="form-control">
+                </div>
+    
+                <div class="form-group">
+                    <label for="editImage">ภาพประกอบ (URL หรือ base64)</label>
+                    <input type="text" id="editImage" class="form-control">
+                </div>
+    
+                <button type="submit" class="btn btn-primary">บันทึกการแก้ไข</button>
+            </form>
+        </div>
+    </div>
+    -->
+    
     <!--  หน้าจอเล็ก (notificationUI) -->
     <div id="notificationUI" style="display: none;">
         <div class="notification-header">
@@ -185,6 +220,31 @@
 
         </div>
     </div>
+
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="ขึ้นด้านบน">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // แสดง/ซ่อนปุ่มเมื่อเลื่อนจอ
+        window.onscroll = function () {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        // ฟังก์ชันเลื่อนกลับไปบนสุด
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+    </script>
 
   
     <div id="fb-root"></div>

@@ -34,6 +34,7 @@ $user_role = $_SESSION['role'];
             <!-- Buttons Section -->
             <div class="container text-center centered-container">
                 <a href="../index.html" class="btn custom-btn custom-btn-home mb-3" role="button">หน้าหลัก</a>
+                <a href="../managenewspage/edit.html" class="btn custom-btn custom-btn-edit mb-3" role="button">ลบ/แก้ไข</a>
                 <a href="../postpage/post.html" class="btn custom-btn custom-btn-primary mb-3" role="button">ฟอร์มเขียนข่าวสาร</a>
 
                 <!-- ปุ่มสำหรับ Admin เท่านั้น -->

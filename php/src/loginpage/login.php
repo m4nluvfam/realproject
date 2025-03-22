@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 'fullname' => $row['ed_name'],
                 'email' => $row['ed_email']
             ];
-
+            
             header("Location: ../buttonpage/webbutton.php");
             exit();
         } else {

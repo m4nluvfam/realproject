@@ -58,6 +58,17 @@ p{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
 }
 
+/* ปรับสีสำหรับปุ่มหน้าหลัก */
+.custom-btn-edit {
+    background-color: #ff9800;
+    color: #ffffff; /* สีตัวอักษร */
+}
+.custom-btn-edit:hover {
+    background-color: #f57c00; /* สีพื้นหลังเวลาโฮเวอร์ */
+    color: #e6e6e6; /* สีตัวอักษรเวลาโฮเวอร์ */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* เงาเวลาโฮเวอร์ */
+}
+
 /* ปรับสีสำหรับปุ่มฟอมร์มเขียนข่าว */
 .custom-btn-primary {
     background-color: #ff9800;
