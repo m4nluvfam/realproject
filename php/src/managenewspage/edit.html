@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="edit.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
 <body>
     <div class="container-fluid">
@@ -26,18 +25,23 @@
 
                 <hr class="styled-hr">
 
-                <h4>News Management</h4>
+                <h4 class="h4-sidebr">News Management</h4>
                 <ul class="nav flex-column">
-                    
                     <li class="nav-item">
                         <a href="../index.html" class="nav-link text-white" id="mainBtn"> 
-                            <i class="fa-solid fa-house me-2"></i> Dashboard </a>
-                      </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-white" id="editBtn"> 
-                            <i class="fa-solid fa-pen-to-square me-2"></i> ลบและแก้ไขข้อมูล </a>
+                            <i class="fa-solid fa-house me-2"></i> Dashboard 
+                        </a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a href="../postpage/post.html" class="nav-link text-white" id="postBtn"> 
+                            <i class="fa-solid fa-square-plus me-2"></i> Create News
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="edit.html" class="nav-link text-white" id="editBtn"> 
+                            <i class="fa-solid fa-pen-to-square me-2"></i> Edit & Delete News
+                        </a>
+                    </li>
                 </ul>
                 <button class="btn btn-danger logout-btn" id="logoutBtn">Log Out</button>
             </div>
@@ -52,79 +56,70 @@
         </div>
     </div>
 
+    <!-- Modal แก้ไขข่าว -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h5 class="modal-title" id="editModalLabel">แก้ไขข่าวประชาสัมพันธ์</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit News</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="editForm" enctype="multipart/form-data">
+                        <input type="hidden" name="editNewsId" id="editNewsId" value=""> <!-- เก็บรหัสข่าวที่กำลังแก้ไข -->
+                        <input type="hidden" name="oldImage" id="oldImage"> <!-- เก็บชื่อไฟล์รูปเดิมไว้ -->
+
+                        <!-- หัวข้อ -->
+                        <div class="mb-3">
+                            <label for="editTitle" class="form-label">หัวข้อข่าว :</label>
+                            <input type="text" class="form-control" id="editTitle" required>
+                        </div>
+
+                        <!-- เนื้อหา -->
+                        <div class="mb-3">
+                            <label for="editDetail" class="form-label">รายละเอียดข่าว :</label>
+                            <textarea class="form-control" id="editDetail" rows="5" required></textarea>
+                        </div>
+
+                        <!-- รูปเดิม -->
+                        <div class="mb-3">
+                            <label class="form-label">รูปภาพ :</label><br>
+                            <img id="currentImage" src="" data-filename="" alt="รูปภาพเดิม" style="max-width: 200px; border: 1px solid #ccc;">
+                        </div>
+
+                        <!-- รูปใหม่ -->
+                        <div class="mb-3">
+                            <label for="editImage" class="form-label">เปลี่ยนรูปภาพ :</label>
+                            <input type="file" class="form-control" id="editImage" accept="image/*">
+                        </div>
+
+                        <!-- วันที่สิ้นสุด -->
+                        <div class="mb-3">
+                            <label for="editEndDate" class="form-label">วันที่สิ้นสุดการแสดงข่าว :</label>
+                            <input type="date" class="form-control" id="editEndDate" required>
+                        </div>
+
+                        <!-- หมวดหมู่ -->
+                        <div class="mb-3">
+                            <label for="editCategory" class="form-label">หน่วยงานที่ให้ข้อมูล :</label>
+                            <select class="form-select" id="editCategory" required>
+                                <!-- จะถูกเติมโดย JS -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="editForm" class="btn btn-primary">Save Changes</button>
+                </div>
+
             </div>
-      
-            <div class="modal-body">
-              <form id="editForm" enctype="multipart/form-data">
-                <input type="hidden" id="editNewsId">
-      
-                <!-- หัวข้อ -->
-                <div class="mb-3">
-                  <label for="editTitle" class="form-label">หัวข้อข่าว</label>
-                  <input type="text" class="form-control" id="editTitle" required>
-                </div>
-      
-                <!-- เนื้อหาหรือรายละเอียด -->
-                <div class="mb-3">
-                  <label for="editDetail" class="form-label">รายละเอียดข่าว</label>
-                  <textarea class="form-control" id="editDetail" rows="5" required></textarea>
-                </div>
-      
-                <!-- รูป -->
-                <div class="mb-3">
-                  <label class="form-label">รูปภาพ</label><br>
-                  <img id="currentImage" src="" alt="รูปภาพเดิม" style="max-width: 200px; border: 1px solid #ccc;">
-                </div>
-                <div class="mb-3">
-                  <label for="editImage" class="form-label">เปลี่ยนรูปภาพ</label>
-                  <input type="file" class="form-control" id="editImage" accept="image/*">
-                </div>
-      
-                <!-- วันที่สิ้นสุดการแสดงข่าว -->
-                <div class="mb-3">
-                  <label for="editEndDate" class="form-label">วันที่สิ้นสุดการแสดงข่าว</label>
-                  <input type="date" class="form-control" id="editEndDate" required>
-                </div>
-      
-                <!-- หน่วยงานที่ให้ข้อมูล -->
-                <div class="mb-3">
-                  <label for="editCategory" class="form-label">หน่วยงานที่ให้ข้อมูล</label>
-                  <select class="form-select" id="editCategory" required>
-                    <option value="" selected disabled>เลือกสาขา / ส่วน / ฝ่าย</option>
-                    <option value="1">งานกิจการนักศึกษา</option>
-                    <option value="2">งานทะเบียนและประมวลผล</option>
-                    <option value="3">งานบริหารทรัพยากรบุคคล/งานนิติกร</option>
-                    <option value="4">งานบริหารการวิจัย</option>
-                    <option value="5">งานแผนงาน</option>
-                    <option value="6">งานการเงินและบัญชี</option>
-                    <option value="7">ประกันคุณภาพการศึกษา</option>
-                    <option value="8">งานบริหารวิชาการและบัณฑิตศึกษา</option>
-                    <option value="9">งานบริการวิชาการ</option>
-                    <option value="10">งานพัสดุ</option>
-                    <option value="11">สโมสรนักศึกษา</option>
-                    <option value="12">นักศึกษาทั่วไป</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-      
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-              <button type="submit" form="editForm" class="btn btn-primary">บันทึกการเปลี่ยนแปลง</button>
-            </div>
-      
-          </div>
         </div>
-      </div>
-      
-    
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="edit.js"></script>
 </body>

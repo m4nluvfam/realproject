@@ -53,7 +53,7 @@ document.getElementById('submitButton').addEventListener('click', function () {
             console.log('Response:', response);
             if (response.includes("success")) {
                 alert('โพสต์สำเร็จแล้ว!');
-                window.location.href = '../index.html';
+                window.location.href = '../managenewspage/edit.html?action=posted';
             } else {
                 alert('เกิดข้อผิดพลาด: ' + response);
             }

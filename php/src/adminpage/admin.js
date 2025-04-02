@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <th>#</th>
                         <th>Full Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

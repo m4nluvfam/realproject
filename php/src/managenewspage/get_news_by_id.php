@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
             tb_news.ns_gns_id, 
             tb_news_group.nsg_name 
         FROM tb_news 
-        LEFT JOIN tb_news_group ON tb_news.ns_gns_id = tb_news_group.nsg_name 
+        LEFT JOIN tb_news_group ON tb_news.ns_gns_id = tb_news_group.nsg_id
         WHERE tb_news.ns_id = ?
     ");
 

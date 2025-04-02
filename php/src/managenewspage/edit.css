@@ -12,13 +12,23 @@ body {
 /* ----------------------------------------------- */
 /* Sidebar */
 .sidebar {
+    position: fixed;/* อยู่กับที่ */
+    top: 0;
+    left: 0;
     background-color: #333333 !important;
     height: 100vh !important;
+    width: 370px; /* ปรับความกว้างตามต้องการ */
     padding-top: 30px;
+    z-index: 1000;/*  ให้แสดงอยู่บนเนื้อหาอื่น */
+}
+
+.content {
+    margin-left: 370px;/* ต้องเท่ากับความกว้าง sidebar */
+    padding: 20px;
 }
 
 /* info */
-.sidebar-header{
+.sidebar-header {
     font-family: "Kanit", "Poppins", sans-serif;
     margin-bottom: 30px;
 }
@@ -47,6 +57,7 @@ body {
 .sidebar h4 {
     margin-bottom: 20px;
     font-size: 1.1rem;
+    color: #ffffff;
 }
 
 .nav-item {
@@ -62,17 +73,14 @@ body {
 
 /* สีลิงก์ที่กำลังถูกเลือก */
 .nav-link.active {
-    background-color: #FFE0B2;
-    /* สีเข้มสำหรับลิงก์ที่เลือก */
-    color: #000000 !important;
-    /* สีข้อความ */
+    background-color: #FFE0B2;/* สีเข้มสำหรับลิงก์ที่เลือก */
+    color: #000000 !important;/* สีข้อความ */
     border-radius: 8px;
 }
 
 /* เปลี่ยนสีลิงก์เมื่อ Hover */
 .nav-link:hover {
-    background-color: #FFB74D;
-    /* สีเข้มขึ้นเมื่อ Hover */
+    background-color: #FFB74D;/* สีเข้มขึ้นเมื่อ Hover */
     color: #000000 !important;
     border-radius: 8px;
 }
@@ -81,7 +89,7 @@ body {
 .logout-btn {
     position: absolute;
     bottom: 20px;
-    width: 10%;
+    width: 40%;
     background-color: #333333;
     border-color: #f57c00;
 }
@@ -104,7 +112,14 @@ h1 {
 }
 
 /* ------------------------------------------------------ */
-.card{
+/* ลบและแก้ไขข่าวประชาสัมพันธ์ */
+h4 {
+    font-family: "Kanit", "Poppins", sans-serif;
+    color: #333333;
+    font-size: 1.25rem;
+}
+
+.card {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -114,15 +129,29 @@ h1 {
     font-weight: bold;
 }
 
-#searchInput {
-    max-width: 400px;
-    font-size: 1.2rem;
-}
-
-.card-img-top{
+.card-img-top {
     width: 100%;
     height: 180px;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid #ccc; /* 🔧 เส้นขอบบาง สีเทาอ่อน */
+    border: 1px solid #ccc;/* เส้นขอบบาง สีเทาอ่อน */
+}
+
+/* Edit news */
+.modal-header {
+    background-color: #FFE0B2;
+}
+
+/* Save Changes Button */
+.btn-primary {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #f57c00;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);/* เงาเวลาโฮเวอร์ */
 }
