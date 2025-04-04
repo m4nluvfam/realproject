@@ -1,18 +1,45 @@
 // แสดงตัวอย่างภาพ
-document.getElementById('formFile').addEventListener('change', function (event) {
+const fileInput = document.getElementById('formFile');
+const preview = document.getElementById('imagePreview');
+const container = document.getElementById('imageContainer');
+
+// สร้างปุ่มลบ
+const removeBtn = document.createElement('button');
+removeBtn.type = "button";
+removeBtn.className = "btn btn-sm btn-danger position-absolute";
+removeBtn.title = "ลบ";
+removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+removeBtn.style.top = "0";
+removeBtn.style.right = "0";
+removeBtn.style.display = "none"; // ซ่อนก่อน
+container.appendChild(removeBtn);
+
+// เมื่อเลือกไฟล์รูป
+fileInput.addEventListener('change', function (event) {
     const file = event.target.files[0];
-    const preview = document.getElementById('imagePreview');
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
+            removeBtn.style.display = "inline-block";
         };
         reader.readAsDataURL(file);
     } else {
+        preview.src = "";
         preview.style.display = 'none';
+        removeBtn.style.display = "none";
     }
 });
+
+// เมื่อกดลบ
+removeBtn.addEventListener("click", () => {
+    fileInput.value = "";              // ล้างไฟล์
+    preview.src = "";
+    preview.style.display = "none";   // ซ่อน preview
+    removeBtn.style.display = "none"; // ซ่อนปุ่มลบ
+});
+
 
 // ฟังก์ชันส่งฟอร์ม
 document.getElementById('submitButton').addEventListener('click', function () {

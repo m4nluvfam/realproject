@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${user.email}</td>
                     <td>${user.role}</td>
                     <td>
-                        <button class="btn btn-outline-warning btn-sm edit-btn" data-id="${user.id}">
+                        <button class="btn btn-outline-warning btn-sm edit-btn me-2" data-id="${user.id}">
                             <i class="fas fa-edit"></i> Edit
                         </button>
                         <button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">
@@ -201,20 +201,20 @@ document.addEventListener("DOMContentLoaded", function () {
           <hr>
           <form id="addUserForm">
               <div class="mb-3">
-                  <label for="newFullname" class="form-label">Full Name</label>
-                  <input type="text" class="form-control" id="newFullname" required>
+                  <label for="newFullname" class="form-label">Full Name :</label>
+                  <input type="text" class="form-control" id="newFullname" placeholder="ชื่อจริง - นามสกุล (Thai/Eng)" required>
               </div>
               <div class="mb-3">
-                  <label for="newEmail" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="newEmail" required>
+                  <label for="newEmail" class="form-label">Email :</label>
+                  <input type="email" class="form-control" id="newEmail" placeholder="example@emxample.com" required>
               </div>
               <div class="mb-3">
-                  <label for="newUsername" class="form-label">Username</label>
-                  <input type="text" class="form-control" id="newUsername" required>
+                  <label for="newUsername" class="form-label">Username :</label>
+                  <input type="text" class="form-control" id="newUsername" placeholder="ตั้งชื่อผู้ใช้งาน (เช่น johndoe123)" required>
               </div>
               <div class="mb-3">
-                  <label for="newPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="newPassword" required>
+                  <label for="newPassword" class="form-label">Password :</label>
+                  <input type="password" class="form-control" id="newPassword" placeholder="กรอกรหัสผ่านที่ต้องการ" required>
               </div>
               <div class="mb-3">
                   <label class="form-label">Role</label><br>

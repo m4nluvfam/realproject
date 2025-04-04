@@ -24,7 +24,7 @@ html {
   
   .content {
     margin-left: 370px; /* ต้องเท่ากับความกว้าง sidebar */
-    padding: 20px;
+    padding: 30px;
 }
 
   /* Sidebar - info*/
@@ -100,10 +100,11 @@ html {
   }
   
   /* -------------------------------------------------------- */
-  /* Main Content */
+  /* Main Content 
   .content {
     padding: 30px;
   }
+  */
   
   h1 {
     font-size: 3rem;

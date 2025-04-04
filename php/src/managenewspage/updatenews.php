@@ -20,7 +20,14 @@ if ($old_image === '0') {
 }
 
 // ตั้งชื่อไฟล์ภาพเริ่มต้นเป็นรูปเดิม
-$image_file_to_save = $old_image;
+// $image_file_to_save = $old_image;
+
+// ตรวจสอบว่า old_image มีค่าเป็น "0" หรือว่าง → ใช้ null แทน
+if ($old_image === '0' || $old_image === '') {
+    $image_file_to_save = null;
+} else {
+    $image_file_to_save = $old_image;
+}
 
 // ตรวจสอบว่ามีการอัปโหลดรูปใหม่มาหรือไม่
 if (!empty($_FILES['image']['name'])) {

@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     handleResponsiveUI(); 
     setupListeners();     
-    checkLoginStatus();
     setupFacebookTabsForNoti();   
 });
 
@@ -81,9 +80,7 @@ function switchPage(pageId) {
 //  ฟังก์ชันกรองข่าว
 function filterNews() {
     let query = document.getElementById("searchInput").value.toLowerCase();
-
-    
-    let newsItems = document.querySelectorAll("#news-container .news-item, #news-container-noti .news-item-noti");
+    let newsItems = document.querySelectorAll("#news-container .news-item");
     let noResultsMessage = document.getElementById("noResultsMessage");
     let found = false;
 
@@ -91,7 +88,7 @@ function filterNews() {
 
     newsItems.forEach(item => {
         let title = item.querySelector("h3").innerText.toLowerCase();
-        let categoryEl = item.querySelector(".news-category, .news-category-noti");
+        let categoryEl = item.querySelector(".news-category");
         let category = categoryEl ? categoryEl.innerText.toLowerCase() : '';
 
         if (title.includes(query) || category.includes(query)) {
@@ -103,16 +100,15 @@ function filterNews() {
     });
 
     if (!found) {
-        noResultsMessage = document.createElement("p");
-        noResultsMessage.id = "noResultsMessage";
-        noResultsMessage.innerText = "ไม่พบข่าวที่ค้นหา";
-        noResultsMessage.style.textAlign = "center";
-        noResultsMessage.style.color = "red";
-        document.getElementById("news-container").appendChild(noResultsMessage);
+        const message = document.createElement("p");
+        message.id = "noResultsMessage";
+        message.innerText = "ไม่พบข่าวที่ค้นหา";
+        message.style.textAlign = "center";
+        message.style.color = "red";
+        document.getElementById("news-container").appendChild(message);
     }
-
-    
 }
+
 
 //  โหลดข่าว
 function loadNews(category, isNotification = false) {
@@ -133,7 +129,7 @@ function loadNews(category, isNotification = false) {
             } else {
                 let rowDiv = null;
                 data.forEach((news, index) => {
-                    if (index % 2 === 0) {
+                    if (index % 3 === 0) {
                         rowDiv = document.createElement("div");
                         rowDiv.classList.add("news-row");
                         container.appendChild(rowDiv);
@@ -149,10 +145,21 @@ function loadNews(category, isNotification = false) {
 
 //  Full UI
 function buildNewsItem(news) {
-    const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
+    let imageFile = news.ns_picture || "";
+    let imgPath = "";
+
+    if (!imageFile || imageFile === "0" || imageFile === "") {
+        imgPath = "/php/src/image/image_b.png"; // fallback
+    } else {
+        // ลบ path หน้าเก่าออก (ถ้ามี)
+        imageFile = imageFile.replace(/^\/?src\/image\//, "").replace(/^src\/image\//, "");
+        imgPath = `/php/src/src/image/${imageFile}`;
+    }
+
+    // const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
     return `
         <div class="news-item" onclick='openNewsModal(${JSON.stringify(news)})'>
-            <img src="${picture}" alt="${news.ns_head}">
+            <img src="${imgPath}" alt="${news.ns_head}">
             <h3 class="news-head">${news.ns_head}</h3>
             <div class="news-footer">    
                 <p class="news-date">
@@ -160,94 +167,31 @@ function buildNewsItem(news) {
                 </p>
                 <span class="news-category">${news.nsg_name}</span>
             </div>
-
-            
-
         </div>
     `;
-}
-
-// แก้ไข
-function openEditModal(news) {
-    document.getElementById("editNewsId").value = news.ns_id;
-    document.getElementById("editTitle").value = news.ns_head;
-    document.getElementById("editContent").value = news.ns_body;
-    document.getElementById("editCategory").value = news.nsg_name;
-    document.getElementById("editImage").value = news.ns_picture || '';
-  
-    document.getElementById("editModal").style.display = "flex";
-  }
-  
-  function closeEditModal() {
-    document.getElementById("editModal").style.display = "none";
-  }
-  
-  //  Submit การแก้ไข
-  const editForm = document.getElementById("editNewsForm");
-  editForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-  
-    const data = {
-      id: document.getElementById("editNewsId").value,
-      head: document.getElementById("editTitle").value,
-      body: document.getElementById("editContent").value,
-      category: document.getElementById("editCategory").value,
-      picture: document.getElementById("editImage").value
-    };
-  
-    fetch("update_news.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.text())
-    .then(response => {
-      alert("แก้ไขข่าวสำเร็จ");
-      closeEditModal();
-      location.reload();
-    })
-    .catch(error => {
-      alert("เกิดข้อผิดพลาด: " + error);
-    });
-  });
-
-// ลบ
-function deleteNews(newsId) {
-    if (confirm("คุณแน่ใจหรือไม่ว่าต้องการลบข่าวนี้?")) {
-        // เรียก PHP backend ไปลบ (ภายหลัง)
-        console.log("ลบข่าว:", newsId);
-    }
-}
-
-function confirmDelete(newsId) {
-    if (confirm("คุณแน่ใจหรือไม่ว่าต้องการลบข่าวนี้?")) {
-        fetch(`/delete_news.php?id=${newsId}`, {
-            method: "GET"
-        })
-        .then(res => res.text())
-        .then(response => {
-            alert(response);
-            // รีโหลดข่าวหลังจากลบ
-            const isNotification = window.innerWidth <= 500;
-            loadNews('news', isNotification);
-        })
-        .catch(err => {
-            alert("เกิดข้อผิดพลาดในการลบข่าว");
-            console.error(err);
-        });
-    }
 }
 
 
 //  Notification UI
 function buildNewsItemNoti(news) {
-    const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
+
+    let imageFile = news.ns_picture || "";
+    let imgPath = "";
+
+    if (!imageFile || imageFile === "0" || imageFile === "") {
+        imgPath = "/php/src/image/image_b.png"; // fallback
+    } else {
+        // ลบ path หน้าเก่าออก (ถ้ามี)
+        imageFile = imageFile.replace(/^\/?src\/image\//, "").replace(/^src\/image\//, "");
+        imgPath = `/php/src/src/image/${imageFile}`;
+    }
+
+    // const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
+    
     return `
-        <div class="news-item-noti expandable">
+        <div class="news-item-noti expandable onclick='openNewsModal(${JSON.stringify(news)})'">
             <div class="news-summary">
-                <img src="${picture}" alt="${news.ns_head}">
+                <img src="${imgPath}" alt="${news.ns_head}">
                 <div class="news-title">
                     <div class="news-date-noti">
                         <i class="fas fa-clock"></i> ${new Date(news.ns_date).toLocaleDateString()}
@@ -276,32 +220,28 @@ function formatBody(text) {
 
 //  Modal
 function openNewsModal(news) {
+
+    let imageFile = news.ns_picture || "";
+    let imgPath = "";
+
+    if (!imageFile || imageFile === "0" || imageFile === "") {
+        imgPath = "/php/src/image/image_b.png";
+    } else {
+        imageFile = imageFile.replace(/^\/?src\/image\//, "").replace(/^src\/image\//, "");
+        imgPath = `/php/src/src/image/${imageFile}`;
+    }
+
     document.getElementById("modalTitle").innerText = news.ns_head;
-    document.getElementById("modalImage").src = news.ns_picture ? news.ns_picture : "/image/image_b.png";
-    document.getElementById("modalBody").innerText = news.ns_body;
+    document.getElementById("modalImage").src = imgPath ;
+    document.getElementById("modalBody").innerHTML = formatBody(news.ns_body);
     document.getElementById("modalCategory").innerText = `ที่มา: ${news.nsg_name}`;
     document.getElementById("modalDate").innerHTML = `<i class='fas fa-clock'></i> ${new Date(news.ns_date).toLocaleDateString()}`;
     document.getElementById("newsModal").style.display = "flex";
 }
 
 function closeNewsModal() {
-    document.getElementById("newsModal").style.display = "none";
-}
-
-//  Account
-function checkLoginStatus() {
-    const accountButton = document.getElementById("accountButton");
-
-    // ✅ สมมติใช้ localStorage แทน session
-    const userLoggedIn = localStorage.getItem("userLoggedIn");  // ถูก set หลัง login
-
-    if (userLoggedIn && accountButton) {
-        // ✅ ถ้าล็อกอินแล้ว
-        accountButton.innerHTML = `<i class="fa-solid fa-user"></i>`;
-        accountButton.onclick = toggleAccountMenu;
-    } else if (accountButton) {
-        // ❌ ถ้ายังไม่ได้ล็อกอิน
-        accountButton.onclick = () => window.location.href = '/loginpage/login.html';
+    if (!event || event.target.id === "newsModal" || event.target.classList.contains("close")) {
+        document.getElementById("newsModal").style.display = "none";
     }
 }
 

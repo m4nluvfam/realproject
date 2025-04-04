@@ -97,7 +97,7 @@ function renderNewsManager() {
                     <i class="fas fa-pen me-2"></i> Edit
                   </button>
                   <button class="btn btn-danger btn-sm" onclick="deleteNews(${news.ns_id})">
-                    <i class="fas fa-trash me-2"></i> Eelete
+                    <i class="fas fa-trash me-2"></i> Delete
                   </button>
                   <p class="mt-2 mb-0 text-muted" style="font-size: 0.9rem;">
                     ${news.ns_date}<br>${news.nsg_name}
@@ -241,31 +241,63 @@ window.deleteNews = function (id) {
 // ปุ่ม Logout
 function bindLogout() {
   document.getElementById("logoutBtn")?.addEventListener("click", function () {
-    fetch("logout.php", {
-      method: "POST"
+    fetch("../logout.php", {
+        method: "POST"
     })
-    .then(res => {
-      if (res.ok) {
-        window.location.href = "../index.html"; // หรือ login.html
-      } else {
-        alert("Logout failed!");
-      }
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "../index.html"; // เปลี่ยนเป็นหน้าแรกของคุณ
+        } else {
+            alert("Logout failed!");
+        }
     })
-    .catch(() => alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์"));
-  });
+    .catch(() => {
+        alert("ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้");
+    });
+});
+
 }
 
 
 // preview รูปภาพใหม่ก่อนอัปโหลด
 const imageInput = document.getElementById("editImage");
 const previewImage = document.getElementById("currentImage");
-if (imageInput && previewImage) {
-  imageInput.addEventListener("change", function () {
-    const file = imageInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = e => previewImage.src = e.target.result;
-      reader.readAsDataURL(file);
-    }
-  });
-}
+const imageWrapper = document.getElementById("imageWrapper");
+
+// สร้างปุ่มลบ
+const removeBtn = document.createElement("button");
+removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+removeBtn.className = "btn btn-sm btn-danger position-absolute";
+removeBtn.type = "button";
+removeBtn.title = "ลบ";
+removeBtn.style.top = "0";
+removeBtn.style.right = "0";
+removeBtn.style.display = "none"; // ซ่อนก่อน
+imageWrapper.appendChild(removeBtn);
+
+// เมื่อเลือกรูปใหม่
+imageInput.addEventListener("change", function () {
+  const file = imageInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      previewImage.src = e.target.result;
+      removeBtn.style.display = "inline-block";
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// เมื่อกดปุ่มลบ
+removeBtn.addEventListener("click", function () {
+  imageInput.value = "";                          // เคลียร์ input file
+
+  const oldFileName = document.getElementById("oldImage").value;
+  if (oldFileName) {
+    previewImage.src = `/php/src/src/image/${oldFileName}`;
+  } else {
+    previewImage.src = "/php/src/image/image_b.png"; // หรือ "" ถ้าไม่ใช้ fallback
+  }
+  
+  removeBtn.style.display = "none";               // ซ่อนปุ่มลบอีกครั้ง
+});

@@ -84,7 +84,7 @@
                         </div>
 
                         <!-- รูปเดิม -->
-                        <div class="mb-3">
+                        <div class="mb-3 position-relative d-inline-block" id="imageWrapper">
                             <label class="form-label">รูปภาพ :</label><br>
                             <img id="currentImage" src="" data-filename="" alt="รูปภาพเดิม" style="max-width: 200px; border: 1px solid #ccc;">
                         </div>
@@ -93,6 +93,7 @@
                         <div class="mb-3">
                             <label for="editImage" class="form-label">เปลี่ยนรูปภาพ :</label>
                             <input type="file" class="form-control" id="editImage" accept="image/*">
+                            <div id="newImagePreview" class="mt-2"></div>
                         </div>
 
                         <!-- วันที่สิ้นสุด -->
