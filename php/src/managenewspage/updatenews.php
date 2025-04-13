@@ -15,18 +15,18 @@ $category_id = $_POST['category_id'] ?? '';
 $old_image = $_POST['old_image'] ?? '';
 
 // ป้องกันค่าผิดพลาด ที่ได้ค่า 0 หรือค่าว่าง จากฝั่ง JS
-if ($old_image === '0') {
-    $old_image = '';
-}
+// if ($old_image === '0') {
+    // $old_image = '';
+// }
 
 // ตั้งชื่อไฟล์ภาพเริ่มต้นเป็นรูปเดิม
 // $image_file_to_save = $old_image;
 
 // ตรวจสอบว่า old_image มีค่าเป็น "0" หรือว่าง → ใช้ null แทน
 if ($old_image === '0' || $old_image === '') {
-    $image_file_to_save = null;
+    $image_file_to_save = "image_b.png";
 } else {
-    $image_file_to_save = $old_image;
+    $image_file_to_save = basename($old_image); // เอาเฉพาะชื่อไฟล์
 }
 
 // ตรวจสอบว่ามีการอัปโหลดรูปใหม่มาหรือไม่
@@ -41,14 +41,14 @@ if (!empty($_FILES['image']['name'])) {
 
     // อัปโหลดรูปใหม่
     if (move_uploaded_file($uploaded_tmp, $target_path)) {
-        $image_file_to_save = "/src/image/" . $uploaded_name;
+        $image_file_to_save = $uploaded_name;
 
         // ถ้ามีรูปเดิม → ลบออกจากระบบ
         if (!empty($old_image)) {
             $old_filename = basename($old_image); // เอาแค่ชื่อไฟล์ออกมา
             $old_path = $upload_dir . $old_filename;
 
-            if ($old_filename !== $uploaded_name && file_exists($old_path)) {
+            if ($old_filename !== $uploaded_name && $old_filename !== 'image_b.png' && file_exists($old_path)) {
                 unlink($old_path);
             }
         }

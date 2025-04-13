@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $position = trim($_POST['position']);
 
     // เริ่มต้น path ว่างไว้ก่อน
-    $imagePath = "";
+    $imagePath = "image_b.png";
 
     // 1. บันทึกข้อมูลข่าว (ยังไม่ใส่ชื่อภาพ)
     $sql = "INSERT INTO tb_news (ns_head, ns_body, ns_picture, ns_gns_id) VALUES (?, ?, ?, ?)";
@@ -32,9 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $imageTmpPath = $_FILES['image']['tmp_name'];
             $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
-            $newImageName = "image" . $insertId . "." . $ext;
+            $newImageName = "image" . $insertId . "." . $ext; //ชื่อไฟล์ที่ต้องการเก็บ
 
-            // 🔁 เปลี่ยน path ไปที่ src/image/
+            // เปลี่ยน path ไปที่ src/image/
             $uploadDir = __DIR__ . "/../src/image/";
             $finalPath = $uploadDir . $newImageName;
 
@@ -45,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // ย้ายไฟล์และอัปเดต path ใน DB
             if (move_uploaded_file($imageTmpPath, $finalPath)) {
-                $imagePath = "/src/image/" . $newImageName;
-
+                $imagePath = $newImageName;
+                
                 $updateSql = "UPDATE tb_news SET ns_picture = ? WHERE ns_id = ?";
                 $updateStmt = $conn->prepare($updateSql);
                 if ($updateStmt) {

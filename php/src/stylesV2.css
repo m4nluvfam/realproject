@@ -152,7 +152,7 @@ html body {
 
 .facebook-plugin-container {
   position: fixed;
-  top: 10px;
+  top: 0;
   right: 10px;
   bottom: 10px;
   left: auto;
@@ -169,6 +169,8 @@ html body {
 
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+  padding-top: 10px;
 }
 
 /* ปรับขนาด Facebook Plugin */
@@ -486,24 +488,44 @@ html body {
   border: none;
 }
 
-/* KMITL News */
+/* KMITL News
 .notification-header {
   text-align: center !important;
   margin-top: 10px !important;
   border-bottom: 2px solid #e65100 !important;
 }
+ */
 
+/*  
 h2 {
   font-family: "Kanit", sans-serif !important;
   font-size: 50px !important;
   line-height: 50px !important;
   font-weight: 650 !important;
   color: #e65100 !important;
-  /* สีเข้มขึ้นเพื่อเพิ่มความโดดเด่น */
+  สีเข้มขึ้นเพื่อเพิ่มความโดดเด่น
   margin-top: 10px !important;
 }
+ */
 
-/* ปุ่มเลือกหมวดหมู่ในแถบด้านข้าง */
+ .notification-header {
+  text-align: left !important;
+   /* padding: 0 10px;          ✅ ระยะห่างจากขอบซ้าย-ขวา เท่ากับข่าว */
+  margin-top: 10px !important;
+  margin-bottom: 6px;
+  border-bottom: 2px solid #e65100 !important;
+}
+
+.notification-header h2 {
+  font-size: 50px !important;
+  line-height: 50px;
+  color: #e65100;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+
+/* ปุ่มเลือกหมวดหมู่ในแถบด้านข้าง 
 .noti-category-tabs {
   display: flex;
   justify-content: center;
@@ -513,11 +535,34 @@ h2 {
   width: 100%;
   margin: 10px auto;
 }
+*/
+.noti-category-tabs {
+  display: flex;
+  justify-content: center;
+  background-color: #424242;
+  border-radius: 15px;
+  max-width: 100%;          /* ✅ ไม่จำกัดความกว้าง */
+  /*width: calc(100% - 20px);  ✅ ให้เท่ากล่องข่าวที่มี padding 10px */
+  margin: 10px auto;
+  gap: 0;                   /* ไม่ต้องมีระยะห่างระหว่างปุ่ม */
+  overflow: hidden;         /* ป้องกันปุ่มล้น */
+}
+
 
 .noti-category-tabs .nav-item {
   flex-grow: 1;
 }
 
+ .noti-category-tabs .nav-link {
+  padding: 10px 0;
+  color: #fff;
+  font-size: 1rem;
+  flex: 1;                   /* ✅ ให้ปุ่มขยายเต็มพื้นที่เท่ากัน */
+  border-radius: 7px;         /* ✅ ปรับปุ่มให้กลืนกัน */
+  text-align: center;
+}
+
+/* 
 .noti-category-tabs .nav-link {
   padding: 10px 0;
   color: #fff;
@@ -526,6 +571,18 @@ h2 {
   width: 100%;
   transition: background-color 0.3s ease;
 }
+ */
+
+ .noti-category-tabs .nav-link:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.noti-category-tabs .nav-link:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 
 /* ปุ่มที่เลือก */
 .noti-category-tabs .nav-link.active {
@@ -760,8 +817,7 @@ h2 {
   }
 
   #facebook-container .fb-page {
-    max-width: 300px;
-    /* ลดขนาดลงเมื่อเป็นหน้าจอเล็ก */
+    max-width: 300px;/* ลดขนาดลงเมื่อเป็นหน้าจอเล็ก */
     height: 350px !important;
   }
 }
@@ -770,7 +826,7 @@ h2 {
 #scrollTopBtn {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: calc(450px + 30px);
   z-index: 999;
   font-size: 12px;
   background-color: #ff9800;
@@ -779,8 +835,7 @@ h2 {
   padding: 8px 10px;
   border-radius: 50%;
   cursor: pointer;
-  display: none;
-  /* ซ่อนปุ่มไว้ก่อน */
+  display: none; /* ซ่อนปุ่มไว้ก่อน */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: opacity 0.3s ease;
 }
@@ -788,3 +843,32 @@ h2 {
 #scrollTopBtn:hover {
   background-color: #e65100;
 }
+
+.facebook-tabs select, .facebook-tabs-noti select {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 2px solid #ff7a52;
+  background-color: white;
+  color: #333;
+  font-family: 'Kanit', sans-serif;
+  cursor: pointer;
+  outline: none;
+  appearance: none; /* ซ่อน default dropdown arrow */
+
+  /* 🔽 ไอคอน dropdown */
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23ff7a52' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px 18px;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s;
+}
+
+.facebook-tabs select:focus,
+.facebook-tabs-noti select:focus {
+  border-color: #e65100;
+}
+

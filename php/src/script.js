@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     handleResponsiveUI(); 
     setupListeners();     
     setupFacebookTabsForNoti();   
+    handleFacebookDropdown("page1");         // fullUI
+    handleFacebookDropdownNoti("fbpage1");   // notificationUI
 });
 
 window.addEventListener("resize", handleResponsiveUI);
@@ -77,6 +79,34 @@ function switchPage(pageId) {
     }
 }
 
+function handleFacebookDropdown(selectedPageId) {
+    document.querySelectorAll('.fb-tab-page').forEach(el => el.style.display = 'none');
+    const target = document.getElementById(selectedPageId);
+    if (target) {
+      target.style.display = 'block';
+      if (typeof FB !== 'undefined') {
+        FB.XFBML.parse(target);
+      }
+    }
+  }
+
+  function handleFacebookDropdownNoti(selectedPageId) {
+    document.querySelectorAll('.fb-tab-page-noti').forEach(el => el.style.display = 'none');
+    const target = document.getElementById(selectedPageId);
+    if (target) {
+      target.style.display = 'block';
+      if (typeof FB !== 'undefined') {
+        FB.XFBML.parse(target);
+      }
+    }
+  }
+
+  // ✅ แสดงเพจแรกเลยตอนโหลดหน้า
+document.addEventListener("DOMContentLoaded", function () {
+    const defaultPage = "page1"; // ค่าเริ่มต้น
+    handleFacebookDropdown(defaultPage);
+  });
+
 //  ฟังก์ชันกรองข่าว
 function filterNews() {
     let query = document.getElementById("searchInput").value.toLowerCase();
@@ -145,16 +175,10 @@ function loadNews(category, isNotification = false) {
 
 //  Full UI
 function buildNewsItem(news) {
-    let imageFile = news.ns_picture || "";
-    let imgPath = "";
-
-    if (!imageFile || imageFile === "0" || imageFile === "") {
-        imgPath = "/php/src/image/image_b.png"; // fallback
-    } else {
-        // ลบ path หน้าเก่าออก (ถ้ามี)
-        imageFile = imageFile.replace(/^\/?src\/image\//, "").replace(/^src\/image\//, "");
-        imgPath = `/php/src/src/image/${imageFile}`;
-    }
+    let filename = news.ns_picture || "image_b.png";
+    let imgPath = (filename === "image_b.png")
+        ? "/php/src/image/" + filename
+        : "/php/src/src/image/" + filename;
 
     // const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
     return `
@@ -175,16 +199,10 @@ function buildNewsItem(news) {
 //  Notification UI
 function buildNewsItemNoti(news) {
 
-    let imageFile = news.ns_picture || "";
-    let imgPath = "";
-
-    if (!imageFile || imageFile === "0" || imageFile === "") {
-        imgPath = "/php/src/image/image_b.png"; // fallback
-    } else {
-        // ลบ path หน้าเก่าออก (ถ้ามี)
-        imageFile = imageFile.replace(/^\/?src\/image\//, "").replace(/^src\/image\//, "");
-        imgPath = `/php/src/src/image/${imageFile}`;
-    }
+    let filename = news.ns_picture || "image_b.png";
+    let imgPath = (filename === "image_b.png")
+        ? "/php/src/image/" + filename
+        : "/php/src/src/image/" + filename;
 
     // const picture = news.ns_picture ? news.ns_picture : '/image/image_b.png';
     
@@ -221,15 +239,10 @@ function formatBody(text) {
 //  Modal
 function openNewsModal(news) {
 
-    let imageFile = news.ns_picture || "";
-    let imgPath = "";
-
-    if (!imageFile || imageFile === "0" || imageFile === "") {
-        imgPath = "/php/src/image/image_b.png";
-    } else {
-        imageFile = imageFile.replace(/^\/?src\/image\//, "").replace(/^src\/image\//, "");
-        imgPath = `/php/src/src/image/${imageFile}`;
-    }
+    let filename = news.ns_picture || "image_b.png";
+    let imgPath = (filename === "image_b.png")
+        ? "/php/src/image/" + filename
+        : "/php/src/src/image/" + filename;
 
     document.getElementById("modalTitle").innerText = news.ns_head;
     document.getElementById("modalImage").src = imgPath ;

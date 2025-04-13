@@ -69,4 +69,3 @@ echo json_encode($news, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 $conn->close();
 ?>
 
-

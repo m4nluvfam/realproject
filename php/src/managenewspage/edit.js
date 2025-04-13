@@ -77,15 +77,10 @@ function renderNewsManager() {
         }
 
         newsList.forEach(news => {
-          let imageFile = news.ns_picture || "";
-          let imgPath = "";
-
-          if (!imageFile || imageFile === "0") {
-            imgPath = "/php/src/image/image_b.png";
-          } else {
-            imageFile = imageFile.replace(/^\/src\/image\//, "").replace(/^src\/image\//, "");
-            imgPath = `/php/src/src/image/${imageFile}`;
-          }
+          let filename = news.ns_picture || "image_b.png";
+          let imgPath = (filename === "image_b.png")
+            ? "/php/src/image/" + filename     // Default
+            : "/php/src/src/image/" + filename; // Uploade
 
           container.innerHTML += `
             <div class="col-md-4 mb-4">
@@ -159,19 +154,16 @@ window.editNews = function (id) {
       document.getElementById("editCategory").value = news.ns_gns_id;
 
       // แก้ path รูป modal เช่นเดียวกับด้านบน
-      let imageFile = news.ns_picture || "";
+      let filename = news.ns_picture || "image_b.png";
       const img = document.getElementById("currentImage");
 
-      if (!imageFile || imageFile === "0") {
-        img.src = "/php/src/image/image_b.png";
-        img.setAttribute("data-filename", "");
-        document.getElementById("oldImage").value = "";
-      } else {
-        imageFile = imageFile.replace(/^\/src\/image\//, "").replace(/^src\/image\//, "");
-        img.src = `/php/src/src/image/${imageFile}`;
-        img.setAttribute("data-filename", imageFile);
-        document.getElementById("oldImage").value = imageFile;
-      }
+      const imgPath = (filename === "image_b.png")
+        ? "/php/src/image/" + filename
+        : "/php/src/src/image/" + filename;
+
+      img.src = imgPath;
+      img.setAttribute("data-filename", filename);
+      document.getElementById("oldImage").value = filename;
 
       loadCategoryOptions(news.ns_gns_id);
 
@@ -293,10 +285,10 @@ removeBtn.addEventListener("click", function () {
   imageInput.value = "";                          // เคลียร์ input file
 
   const oldFileName = document.getElementById("oldImage").value;
-  if (oldFileName) {
-    previewImage.src = `/php/src/src/image/${oldFileName}`;
+  if (oldFileName === "image_b.png") {
+    previewImage.src = "/php/src/image/" + oldFileName;
   } else {
-    previewImage.src = "/php/src/image/image_b.png"; // หรือ "" ถ้าไม่ใช้ fallback
+    previewImage.src = "/php/src/src/image/" + oldFileName; // หรือ "" ถ้าไม่ใช้ fallback
   }
   
   removeBtn.style.display = "none";               // ซ่อนปุ่มลบอีกครั้ง

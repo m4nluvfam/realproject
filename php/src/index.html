@@ -62,11 +62,21 @@
             <!-- Facebook Plugin -->
             <aside class="facebook-plugin-container">
 
-                <!-- ปุ่มเลือกเพจเฟซบุ๊ค -->
+                <!-- ปุ่มเลือกเพจเฟซบุ๊ค 
                 <div class="facebook-tabs">
                     <button onclick="switchPage('page1')" class="tab-button active">KMITL Prince of Chumphon</button>
                     <button onclick="switchPage('page2')" class="tab-button">Computer Engineering KMITL, PCC</button>
                 </div>
+                -->
+
+                <div class="facebook-tabs">
+                    <select id="facebookDropdown" onchange="handleFacebookDropdown(this.value)">
+                      <option disabled selected>เลือกเพจ Facebook เพื่อดูข่าว</option>
+                      <option value="page1">KMITL Prince of Chumphon</option>
+                      <option value="page2">Computer Engineering KMITL, PCC</option>
+                    </select>
+                  </div>
+                  
         
                 <!-- เพจ 1 : KMITLPrinceofChumphon -->
                 <div id="page1" class="fb-tab-page">
@@ -143,12 +153,21 @@
         <!-- Facebook Page Timeline สำหรับหน้าจอเล็ก -->
         <div id="facebook-container-noti" class="tab-content" style="display: none;">
 
-            <!-- ปุ่มเลือกเพจ -->
+            <!-- ปุ่มเลือกเพจ 
             <div class="facebook-tabs-noti">
                 <button class="fb-tab-noti active" data-page="fbpage1">KMITL Prince of Chumphon</button>
                 <button class="fb-tab-noti" data-page="fbpage2">Computer Engineering KMITL, PCC</button>
             </div>
-            
+            -->
+
+            <div class="facebook-tabs-noti">
+                <select id="facebookDropdownNoti" onchange="handleFacebookDropdownNoti(this.value)">
+                  <option disabled selected>เลือกเพจ Facebook เพื่อดูข่าว</option>
+                  <option value="fbpage1">KMITL Prince of Chumphon</option>
+                  <option value="fbpage2">Computer Engineering KMITL, PCC</option>
+                </select>
+            </div>
+              
             <!-- เพจ 1 : KMITLPrinceofChumphon -->
             <div id="fbpage1" class="fb-tab-page-noti">
                 <div class="fb-page" 
